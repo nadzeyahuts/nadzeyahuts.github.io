@@ -51,7 +51,7 @@
       const m = raw.match(/^(\d+(?:\.\d+)?)(.*?)(\d*)(.*)$/);
       if(!m || isNaN(parseFloat(m[1]))) return;
       const target = parseFloat(m[1]); const dec = m[1].includes('.') ? m[1].split('.')[1].length : 0;
-      const prefix = ''; const suffix = m[2] + (m[3] ? m[3]+m[4] : '');
+      const prefix = ''; const suffix = raw.slice(m[1].length);
       const dur = 1400; const start = performance.now();
       (function step(now){
         const p = Math.min((now - start)/dur, 1);

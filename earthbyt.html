@@ -22,7 +22,14 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="case.css">
 <script src="image-slot.js"></script>
-<style>.case-hero{--tint:rgba(140,90,255,.22)}a{color:inherit}a:hover{color:var(--ink)}</style>
+<style>.case-hero{--tint:rgba(25,106,181,.30)}a{color:inherit}a:hover{color:var(--ink)}</style>
+<style id="eb-theme-sw">
+.theme-sw{display:inline-flex;gap:4px;padding:4px;border:1px solid var(--line);border-radius:30px;background:rgba(255,255,255,.03);margin:0 0 16px}
+.theme-sw button{font-family:var(--body);font-size:13px;font-weight:500;color:var(--muted);background:transparent;border:0;border-radius:24px;padding:7px 16px;cursor:pointer;transition:color .2s,background .2s}
+.theme-sw button:hover{color:#fff}
+.theme-sw button[aria-pressed="true"]{color:#0f0f12;background:#f5f5f6}
+.theme-sw button:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+</style>
 <style id="eb-hero">
 .eb-hero{position:relative;display:grid;min-height:100dvh;overflow:hidden}
 .eb-hero-bg{grid-area:1/1;width:100%;height:100%;object-fit:cover;display:block}
@@ -75,14 +82,17 @@
 <div class="reveal"><span class="kicker">Process</span><h2 class="sec">One prompt per role. One product at the end.</h2></div>
 <div class="steps reveal"><div class="step"><span class="k">01 · Map</span><h4>Roles &amp; flows</h4><p>Buyer, issuer and admin journeys mapped from the client’s wireframes.</p></div><div class="step"><span class="k">02 · Prompt</span><h4>Flow-by-flow specs</h4><p>Screens, form fields, compliance states, tables, sample data and tokens.</p></div><div class="step"><span class="k">03 · Generate</span><h4>38 linked screens</h4><p>Claude Design builds every screen and links them into one clickable product.</p></div><div class="step"><span class="k">04 · Refine</span><h4>Two themes, one system</h4><p>Token-driven dark/light themes and hand-tuned status colours and tables.</p></div></div>
 </div></section><section class="s" data-screen-label="05 Product Features"><div class="wrap">
-<h2 class="sec reveal" style="margin-bottom:18px">Product Features</h2><p class="lead-p reveal" style="margin-bottom:48px">Dark, focused screens with a violet primary and green for verified states — and a light theme built from the same tokens.</p>
+<h2 class="sec reveal" style="margin-bottom:18px">Product Features</h2><p class="lead-p reveal" style="margin-bottom:48px">Dark, focused screens with a blue primary and green for verified states — and a light theme built from the same tokens. Use the switch to flip any screen set between dark and light.</p>
 <div class="feat reveal"><div class="lab">Buyer</div><h3>Discover, buy <strong>&amp; retire</strong></h3>
+<div class="theme-sw" role="group" aria-label="Screen theme"><button type="button" data-theme="dark" aria-pressed="true">Dark</button><button type="button" data-theme="light" aria-pressed="false">Light</button></div>
 <div class="ftabs" role="tablist"><button class="ftab" role="tab" aria-selected="true" data-fpanel="eb-0">Marketplace</button><button class="ftab" role="tab" aria-selected="false" data-fpanel="eb-1">Project details</button><button class="ftab" role="tab" aria-selected="false" data-fpanel="eb-2">Checkout</button><button class="ftab" role="tab" aria-selected="false" data-fpanel="eb-3">Certificate</button><button class="ftab" role="tab" aria-selected="false" data-fpanel="eb-4">ESG reporting</button></div>
 <div class="fpanels"><div class="fpanel active" data-panel="eb-0"><div class="fshot-wrap"><img class="fshot" src="assets/ai/eb-marketplace.webp" alt="Marketplace" loading="lazy"></div><div class="finfo"><p class="fk">Marketplace</p><p>Verified projects with registry, country, vintage and methodology, <span class="hi">filters</span> and side-by-side compare.</p></div></div><div class="fpanel" data-panel="eb-1"><div class="fshot-wrap"><img class="fshot" src="assets/ai/eb-project.webp" alt="Project details" loading="lazy"></div><div class="finfo"><p class="fk">Project details</p><p>Documentation, ESG co-benefits and live availability before purchase.</p></div></div><div class="fpanel" data-panel="eb-2"><div class="fshot-wrap"><img class="fshot" src="assets/ai/eb-checkout.webp" alt="Checkout" loading="lazy"></div><div class="finfo"><p class="fk">Checkout</p><p>Quantity, price per coin and fees in one transparent summary.</p></div></div><div class="fpanel" data-panel="eb-3"><div class="fshot-wrap"><img class="fshot" src="assets/ai/eb-certificate.webp" alt="Certificate" loading="lazy"></div><div class="finfo"><p class="fk">Retirement certificate</p><p>Retired credits produce a <span class="hi">verifiable certificate</span> for ESG reporting.</p></div></div><div class="fpanel" data-panel="eb-4"><div class="fshot-wrap"><img class="fshot" src="assets/ai/eb-esg.webp" alt="ESG reporting" loading="lazy"></div><div class="finfo"><p class="fk">ESG reporting</p><p>Offsets and retirements rolled up into exportable reports.</p></div></div></div></div>
 <div class="feat reveal"><div class="lab">Issuer</div><h3>Onboard <strong>&amp; list projects</strong></h3>
+<div class="theme-sw" role="group" aria-label="Screen theme"><button type="button" data-theme="dark" aria-pressed="true">Dark</button><button type="button" data-theme="light" aria-pressed="false">Light</button></div>
 <div class="ftabs" role="tablist"><button class="ftab" role="tab" aria-selected="true" data-fpanel="eb-5">AML questionnaire</button><button class="ftab" role="tab" aria-selected="false" data-fpanel="eb-6">Issuer dashboard</button></div>
 <div class="fpanels"><div class="fpanel active" data-panel="eb-5"><div class="fshot-wrap"><img class="fshot" src="assets/ai/eb-aml.webp" alt="AML questionnaire" loading="lazy"></div><div class="finfo"><p class="fk">KYB · UBO · AML</p><p>Step-by-step regulated onboarding: company, ultimate beneficial owners, representative and AML checks.</p></div></div><div class="fpanel" data-panel="eb-6"><div class="fshot-wrap"><img class="fshot" src="assets/ai/eb-issuer.webp" alt="Issuer dashboard" loading="lazy"></div><div class="finfo"><p class="fk">Issuer dashboard</p><p>Listings, sales and project submissions in one place.</p></div></div></div></div>
 <div class="feat reveal"><div class="lab">Admin portal</div><h3>Compliance <strong>&amp; operations</strong></h3>
+<div class="theme-sw" role="group" aria-label="Screen theme"><button type="button" data-theme="dark" aria-pressed="true">Dark</button><button type="button" data-theme="light" aria-pressed="false">Light</button></div>
 <div class="ftabs" role="tablist"><button class="ftab" role="tab" aria-selected="true" data-fpanel="eb-7">Admin dashboard</button><button class="ftab" role="tab" aria-selected="false" data-fpanel="eb-8">KYB review</button></div>
 <div class="fpanels"><div class="fpanel active" data-panel="eb-7"><div class="fshot-wrap"><img class="fshot" src="assets/ai/eb-admin.webp" alt="Admin dashboard" loading="lazy"></div><div class="finfo"><p class="fk">Admin dashboard</p><p>Pending KYB reviews, high-risk alerts, active listings and 24h GMV — <span class="hi">the operator’s day at a glance</span>.</p></div></div><div class="fpanel" data-panel="eb-8"><div class="fshot-wrap"><img class="fshot" src="assets/ai/eb-kyb.webp" alt="KYB review" loading="lazy"></div><div class="finfo"><p class="fk">KYB / KYC review</p><p>Review applicants, request documents, approve or reject with a full audit trail.</p></div></div></div></div>
 </div></section><section class="s end" data-screen-label="Want to learn more"><div class="wrap reveal"><div class="ty">Thanks for reading</div><h2>Want a working prototype like this?</h2><div class="end-btns"><a class="btn solid" href="mailto:nadzeyahuts@gmail.com">Let's talk</a><a class="btn" href="sentinel.html">Sentinel</a><a class="btn" href="nova.html">NOVA mini-games</a></div></div></section>
@@ -91,6 +101,18 @@
 <button id="toTop" type="button" aria-label="Back to top" title="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"></path><path d="m5 12 7-7 7 7"></path></svg></button>
 <a id="toHome" href="index.html" aria-label="Go to portfolio home" title="Portfolio home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"></path><path d="M5 9.5V21h14V9.5"></path><path d="M10 21v-6h4v6"></path></svg></a>
 <footer class="f"><div class="wrap"><span class="label">© 2026 Nadzeya Huts</span><span class="label"><a href="ai-lab.html"><span>←</span> Back to AI Lab</a></span></div></footer>
+<script>
+(function(){
+  function apply(t){
+    document.querySelectorAll('.theme-sw button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.theme===t?'true':'false')});
+    document.querySelectorAll('img.fshot[src*="assets/ai/eb-"]').forEach(function(img){
+      var s=img.getAttribute('src').replace('-light.webp','.webp');
+      img.setAttribute('src',t==='light'?s.replace('.webp','-light.webp'):s);
+    });
+  }
+  document.querySelectorAll('.theme-sw button').forEach(function(b){b.addEventListener('click',function(){apply(b.dataset.theme)})});
+})();
+</script>
 <script src="case.js"></script>
 <script src="contact.js"></script>
 </body>
