@@ -106,11 +106,18 @@ button{background:none;border:0;cursor:pointer}
 .pill b{color:var(--text);font-weight:600}
 .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:blip 2.2s ease-in-out infinite}
 @keyframes blip{0%,100%{opacity:1}50%{opacity:.35}}
-.bal{display:flex;align-items:center;gap:11px;height:42px;padding:0 15px;border-radius:12px;position:relative;
+/* two stacked lines (label + value) inside a 62px bar. Never let the top-bar
+   flex row squeeze it: it must not shrink, must not wrap, and the height is
+   driven by padding so a wide 6-figure value cannot clip. min-width keeps the
+   box from resizing as the animated balance gains a digit. */
+.bal{display:flex;align-items:center;gap:11px;flex:0 0 auto;min-width:192px;
+  min-height:46px;padding:5px 15px;border-radius:12px;position:relative;white-space:nowrap;
   background:linear-gradient(135deg,rgba(139,92,246,.16),rgba(34,211,238,.07));border:1px solid var(--stroke-hi)}
-.bal .lab{font-size:9.5px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
+.bal > div{display:flex;flex-direction:column;justify-content:center;gap:3px;min-width:0}
+.bal .lab{font-size:9.5px;line-height:1.1;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
 .bal .val{font-family:var(--font-num);font-variant-numeric:tabular-nums;font-size:21px;font-weight:700;line-height:1}
-.bal .tok{font-size:11px;color:var(--muted);font-weight:600}
+.bal .tok{display:inline;width:auto;height:auto;border:0;background:none;border-radius:0;
+  font-size:11px;color:var(--muted);font-weight:600}
 .bal::after{content:'';position:absolute;inset:-3px;border-radius:15px;border:2px solid var(--gold);opacity:0;pointer-events:none}
 .bal.lock::after{animation:lockRing .9s var(--ease-out)}
 @keyframes lockRing{0%{opacity:1;transform:scale(.94)}70%{opacity:.55}100%{opacity:0;transform:scale(1.14)}}
@@ -153,11 +160,14 @@ button{background:none;border:0;cursor:pointer}
 .chip:hover{color:var(--text);background:rgba(139,92,246,.18);border-color:rgba(139,92,246,.4)}
 .chip:active{transform:scale(.94)}
 .toks{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-.tok{display:flex;align-items:center;justify-content:center;gap:6px;height:38px;border-radius:10px;
+/* scoped to the token picker on purpose: an unscoped `.tok` also matched the
+   `USDT` span inside the top-bar balance and turned it into a 38px bordered
+   block that broke onto its own line. */
+.toks .tok{display:flex;align-items:center;justify-content:center;gap:6px;height:38px;border-radius:10px;
   background:rgba(255,255,255,.035);border:1px solid var(--stroke);font-size:12px;font-weight:700;color:var(--muted);transition:.18s var(--ease-out)}
-.tok:hover{color:var(--text);border-color:var(--stroke-hi);background:rgba(255,255,255,.06)}
-.tok.on{color:var(--text);border-color:rgba(34,211,238,.45);background:rgba(34,211,238,.1);box-shadow:0 0 14px rgba(34,211,238,.16)}
-.tok svg{width:16px;height:16px;flex:0 0 16px}
+.toks .tok:hover{color:var(--text);border-color:var(--stroke-hi);background:rgba(255,255,255,.06)}
+.toks .tok.on{color:var(--text);border-color:rgba(34,211,238,.45);background:rgba(34,211,238,.1);box-shadow:0 0 14px rgba(34,211,238,.16)}
+.toks .tok svg{width:16px;height:16px;flex:0 0 16px}
 .row{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .sw{width:40px;height:22px;border-radius:20px;background:rgba(255,255,255,.09);border:1px solid var(--stroke);position:relative;transition:.24s var(--ease-out);flex:0 0 40px}
 .sw::after{content:'';position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#6E6E92;transition:.24s var(--ease-pop)}
@@ -201,7 +211,8 @@ button{background:none;border:0;cursor:pointer}
 .hud > *{position:relative}
 .mult{font-family:var(--font-num);font-variant-numeric:tabular-nums;font-weight:700;font-size:clamp(64px,8.4vw,124px);
   line-height:.95;letter-spacing:-.01em;text-shadow:0 0 60px rgba(139,92,246,.55);transition:color .25s}
-.mult .x{font-size:.52em;opacity:.65;margin-left:.04em}
+.mult .x{display:inline;width:auto;height:auto;border:0;background:none;border-radius:0;
+  font-size:.52em;opacity:.65;margin-left:.04em}
 .mult.crit{animation:critFlick .16s steps(2,end) infinite}
 @keyframes critFlick{0%{opacity:1}50%{opacity:.82;filter:brightness(1.25)}100%{opacity:1}}
 .mult.crashed{color:var(--red);text-shadow:0 0 60px rgba(255,59,92,.5)}
@@ -338,8 +349,11 @@ button{background:none;border:0;cursor:pointer}
 .mh{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:20px}
 .mh h3{font-family:var(--font-num);font-size:23px;font-weight:700;letter-spacing:.04em}
 .mh p{font-size:12.5px;color:var(--muted);margin-top:4px}
-.x{width:32px;height:32px;border-radius:9px;border:1px solid var(--stroke);color:var(--muted);display:grid;place-items:center;transition:.2s}
-.x:hover{color:var(--red);border-color:rgba(255,59,92,.4);background:rgba(255,59,92,.1)}
+/* close buttons only. Unscoped, this also matched the `<span class="x">×</span>`
+   inside the big multiplier and painted a 32px bordered grid box in the middle
+   of the stage with the glyph spilling out below it. */
+button.x{width:32px;height:32px;border-radius:9px;border:1px solid var(--stroke);color:var(--muted);display:grid;place-items:center;transition:.2s}
+button.x:hover{color:var(--red);border-color:rgba(255,59,92,.4);background:rgba(255,59,92,.1)}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .kv{background:rgba(6,6,13,.55);border:1px solid var(--stroke);border-radius:11px;padding:10px 12px}
 .kv .k{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:5px}
@@ -410,7 +424,11 @@ button{background:none;border:0;cursor:pointer}
 .by b{color:var(--text)}
 
 /* toasts / fx */
-.toasts{position:fixed;right:22px;bottom:56px;z-index:75;display:flex;flex-direction:column;gap:8px;align-items:flex-end;pointer-events:none}
+/* own lane: parked just left of the right rail so the toast stack never sits on
+   top of the Live Bets feed. Tracks the centred 1600px max-width of .main. */
+.toasts{position:fixed;right:calc(max(0px, (100vw - 1600px) / 2) + 324px);bottom:56px;z-index:75;
+  max-width:min(430px, calc(100vw - 380px));
+  display:flex;flex-direction:column;gap:8px;align-items:flex-end;pointer-events:none}
 .toast{display:flex;align-items:center;gap:10px;padding:11px 15px;border-radius:12px;font-size:13px;font-weight:600;
   background:rgba(11,11,22,.94);border:1px solid var(--stroke-hi);box-shadow:0 14px 40px rgba(0,0,0,.5);
   animation:toastIn .45s var(--ease-pop), toastOut .4s var(--ease-out) 2.9s forwards;backdrop-filter:blur(14px)}
@@ -430,9 +448,12 @@ button{background:none;border:0;cursor:pointer}
   30%,50%,70%{transform:translate3d(-8px,3px,0)}40%,60%{transform:translate3d(8px,-3px,0)}}
 
 /* tech drawer */
-#tech{position:fixed;top:0;right:0;bottom:0;width:390px;max-width:92vw;z-index:72;transform:translateX(102%);
+/* starts below the 62px top bar so the brand, balance and controls stay readable
+   while the panel is open */
+#tech{position:fixed;top:62px;right:0;bottom:0;width:390px;max-width:92vw;z-index:72;transform:translateX(102%);
   transition:transform .5s var(--ease-out);background:linear-gradient(200deg,rgba(20,20,42,.98),rgba(8,8,16,.99));
-  border-left:1px solid var(--stroke-hi);box-shadow:-30px 0 80px rgba(0,0,0,.6);overflow-y:auto;padding:22px}
+  border-left:1px solid var(--stroke-hi);border-top:1px solid var(--stroke);
+  box-shadow:-30px 0 80px rgba(0,0,0,.6);overflow-y:auto;padding:22px}
 #tech.on{transform:none}
 #tech h3{font-family:var(--font-num);font-size:19px;font-weight:700;margin-bottom:4px}
 #tech .sub{font-size:12px;color:var(--muted);margin-bottom:18px}
@@ -454,7 +475,7 @@ button{background:none;border:0;cursor:pointer}
   position:absolute;left:50%;top:12px;transform:translateX(-50%);z-index:6;pointer-events:none;
   display:flex;flex-direction:column;align-items:center;
   padding:13px 38px 15px;border-radius:20px;text-align:center;white-space:nowrap;
-  min-width:min(440px,86%);max-width:94%;
+  min-width:min(440px,86%);max-width:98%;
   opacity:0;visibility:hidden;
   background:radial-gradient(closest-side,rgba(4,4,10,.92),rgba(4,4,10,.74) 58%,rgba(4,4,10,0) 100%);
 }
@@ -472,7 +493,7 @@ button{background:none;border:0;cursor:pointer}
 .rbanner .l2{font-family:var(--font-num);font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;
   font-size:64px;font-weight:700;line-height:1.02;letter-spacing:-.012em;margin-top:2px}
 .rbanner .l3{font-size:13px;color:var(--muted);margin-top:5px;font-weight:500;
-  white-space:normal;line-height:1.35}
+  white-space:normal;line-height:1.35;letter-spacing:-.002em;max-width:100%}
 .rbanner.win .l1{color:#7BE39B}
 .rbanner.win .l2{color:var(--green);text-shadow:0 0 46px rgba(34,197,94,.65)}
 .rbanner.win .ring{color:var(--green)}
@@ -1915,12 +1936,18 @@ function doCrash() {
       lostTxt = ' · <b style="color:var(--red)">−' + money(P.bet) + ' ' + P.token + '</b> net' + crateNote(P);
     }
     setYou(P.refunded ? 3 : 2);
-  } else if (P.in && P.cashed) {
-    // the cash-out already stated the numbers; restate the SAME ones, never new ones
-    lostTxt = ' · you cashed at <b style="color:var(--gold)">' + mx(P.cashMult) +
-              '</b> · <b style="color:var(--green)">+' + money(netOf(P)) + ' ' + P.token + '</b> net';
   }
-  D.substat.innerHTML = 'CRASHED @ <b style="color:var(--red)">' + mx(S.crash) + '</b>' + lostTxt;
+  if (P.in && P.cashed) {
+    /* The player is already out and already won. The red BUSTED owns the screen
+       from here; the quiet sub-status carries the player's own outcome so the
+       stage never shouts a win and a loss at the same time. Same numbers as the
+       cash-out — never new ones. */
+    D.substat.innerHTML = 'cashed at <b style="color:var(--gold)">' + mx(P.cashMult) +
+      '</b> · <b style="color:var(--green)">+' + money(netOf(P)) + ' ' + P.token +
+      '</b> net · rocket flew to <b style="color:var(--red)">' + mx(S.crash) + '</b>';
+  } else {
+    D.substat.innerHTML = 'CRASHED @ <b style="color:var(--red)">' + mx(S.crash) + '</b>' + lostTxt;
+  }
 
   /* --- the loud part: banner + edge glow + MY ROUNDS. Silent when there was
          no stake this round — a spectator never gets a result banner.
@@ -1930,7 +1957,18 @@ function doCrash() {
     P.logged = true;
     const evt = 'r' + S.roundNo;          // one settlement id → one count-up, one number
     if (P.cashed) {
-      showResultBanner('win', netOf(P), winSub(P, 'rocket flew to ' + mx(S.crash)), P.token, evt);
+      /* Second beat of a win that was already announced at the cash-out. Never
+         re-raise the big green banner over a full-screen red BUSTED — that
+         reads as "you won and you lost" in the same frame. If the first banner
+         is still on screen, finish its third line in place (no re-entrance, so
+         no second green shockwave ring to collide with the red one); if it has
+         already expired, let the bust have the screen to itself. The YOUR BET
+         card stays green and the sub-status carries the player's result. */
+      if (RB.on && !RB.exiting && RB.evt === evt && D.rbL3) {
+        D.rbL3.textContent = winSub(P, 'rocket flew to ' + mx(S.crash));
+        // and step aside quickly so the red bust is not shouted over
+        RB.hideAt = Math.min(RB.hideAt, S.clock + 450);
+      }
       pushMine(mineRec(P));
     } else if (P.refunded) {
       showResultBanner('push', 0,
@@ -2095,10 +2133,10 @@ function netOf(P) {
   return back - P.bet;
 }
 function boostNote(P) {
-  return P.boostApplied > 1 ? ' · boost ×' + P.boostApplied.toFixed(1) + ' applied' : '';
+  return P.boostApplied > 1 ? ' · boost ×' + P.boostApplied.toFixed(1) : '';
 }
 function crateNote(P) {
-  return P.extra > 0 ? ' · gold crate +' + money(P.extra) + ' paid separately' : '';
+  return P.extra > 0 ? ' · crate +' + money(P.extra) + ' on top' : '';
 }
 /* Banner line 3 / tooltip copy for a cashed-out round: the whole sum, in order,
    so nothing behind the headline is hidden. */

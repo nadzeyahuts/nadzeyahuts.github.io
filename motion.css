@@ -123,3 +123,25 @@ html,body{overflow-x:clip}
 .m-foot nav{display:flex;gap:20px;flex-wrap:wrap}
 .m-foot a{color:#b7b8c0;transition:color .2s}.m-foot a:hover{color:#fff}
 @media print{.m-foot{display:none}}
+
+/* shared site header: NH ✳ 2026 | menu | note + Remote pill */
+.hd{position:relative;z-index:6}
+.hd-in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;height:72px}
+.hd-mark{font-family:var(--head,'Epilogue',system-ui,sans-serif);font-weight:600;font-size:17px;letter-spacing:-.02em;color:#fff;display:inline-flex;align-items:center;white-space:nowrap;justify-self:start}
+.hd-mark .ss{margin:0 .55em;opacity:.9}.hd-mark em{font-style:normal;font-weight:400;color:var(--muted-2,#b7b8c0)}
+.hd-nav{display:flex;gap:6px}
+.hd-nav a{font-size:14px;color:var(--muted-2,#b7b8c0);padding:8px 14px;border-radius:20px;transition:color .2s,background .2s;white-space:nowrap}
+.hd-nav a:hover,.hd-nav a[aria-current]{color:#fff;background:rgba(255,255,255,.06)}
+.hd-nav a:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.hd-r{display:flex;align-items:center;justify-content:flex-end;gap:12px;min-width:0}
+.hd-note{font-size:13px;color:var(--muted,#948f9a);white-space:nowrap}
+.hd-pill{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:#14f195;border:1px solid var(--line-2,rgba(255,255,255,.14));border-radius:20px;padding:7px 13px;background:rgba(255,255,255,.02);white-space:nowrap}
+.hd-dot{position:relative;width:8px;height:8px;border-radius:50%;background:#14f195;flex:none;margin-right:2px}
+.hd-dot::before,.hd-dot::after{content:"";position:absolute;inset:0;border-radius:50%;border:1px solid #14f195;animation:hd-rip 2.4s ease-out infinite}.hd-dot::after{animation-delay:1.2s}
+@keyframes hd-rip{0%{transform:scale(1);opacity:.75}100%{transform:scale(3.6);opacity:0}}
+@media(prefers-reduced-motion:reduce){.hd-dot::before,.hd-dot::after{animation:none;opacity:0}}
+@media(max-width:1260px){.hd-note{display:none}}
+@media(max-width:760px){.hd-in{grid-template-columns:1fr auto}.hd-nav{display:none}}
+.nw{white-space:nowrap}
+.nw>.ss:first-child{margin:0 .1em 0 0}
+.hd-bleed{width:100vw;margin-left:calc(50% - 50vw)}

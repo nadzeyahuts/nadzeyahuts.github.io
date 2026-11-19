@@ -223,8 +223,9 @@ button{background:none;border:0;cursor:pointer}
 .rcard.exp:hover{border-color:var(--stroke-hi);background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));transform:translateY(-1px)}
 .rcard.exp.win{border-color:rgba(34,197,94,.32)}
 .rcard.exp.lose{border-color:rgba(255,59,92,.28)}
-.ring{width:30px;height:30px;flex:0 0 30px;transform:rotate(-90deg)}
-.ring circle{fill:none;stroke-width:3.2}
+/* scoped: `ring` is also the result banner's shockwave (.rbanner .ring) */
+.rcard .ring{width:30px;height:30px;flex:0 0 30px;transform:rotate(-90deg)}
+.rcard .ring circle{fill:none;stroke-width:3.2}
 .ringtxt{position:absolute;right:12px;top:11px;width:30px;height:30px;display:grid;place-items:center;
   font-family:var(--font-num);font-variant-numeric:tabular-nums;font-size:11px;font-weight:700;transform:none}
 .side{display:flex;align-items:center;justify-content:space-between;height:26px;padding:0 9px;border-radius:8px;font-size:12px;font-weight:700;
@@ -329,7 +330,13 @@ button{background:none;border:0;cursor:pointer}
 .dbig.down .arw{transform:rotate(180deg)}
 .dbig.flat .arw{transform:rotate(90deg)}
 .dbig.flip .arw{animation:arwSpring .62s var(--ease-pop)}
-@keyframes arwSpring{0%{transform:rotate(var(--r0)) scale(1)}35%{transform:rotate(var(--r1)) scale(1.5)}70%{transform:rotate(var(--r1)) scale(.86)}100%{transform:rotate(var(--r1)) scale(1)}}
+/* THE ARROW MAY NEVER CONTRADICT THE SIGN BESIDE IT. This spring used to start
+   at the OLD angle (--r0) and interpolate to the new one over the first 35% of
+   620ms, so for ~220ms after a zero crossing the readout showed an up arrow
+   next to a number that had already gone negative: "↑ −$0.01 (−0.008%)".
+   The rotation is now pinned to --r1 on the very first frame — the same frame
+   the number's sign changes — and the spring is carried entirely by scale. */
+@keyframes arwSpring{0%{transform:rotate(var(--r1)) scale(.78)}35%{transform:rotate(var(--r1)) scale(1.5)}70%{transform:rotate(var(--r1)) scale(.86)}100%{transform:rotate(var(--r1)) scale(1)}}
 /* the row under the delta readout: the outcome pill, then the market facts */
 .drow{display:flex;align-items:center;justify-content:center;gap:11px;min-width:0;max-width:100%}
 .dsub{font-size:11.5px;color:var(--muted);font-weight:600;letter-spacing:.04em;font-family:var(--font-num);font-variant-numeric:tabular-nums;white-space:nowrap;
@@ -365,13 +372,22 @@ button{background:none;border:0;cursor:pointer}
   text-shadow:0 0 70px rgba(139,92,246,.6);opacity:0}
 .cdbig.go{animation:cdK .95s var(--ease-out)}
 @keyframes cdK{0%{opacity:0;transform:scale(.5)}18%{opacity:.95;transform:scale(1)}70%{opacity:.5;transform:scale(1.22)}100%{opacity:0;transform:scale(1.5)}}
-.lockflash{position:absolute;inset:0;display:grid;place-items:center;z-index:5;pointer-events:none;opacity:0}
-.lockflash .in{font-family:var(--font-num);font-variant-numeric:tabular-nums;font-size:clamp(24px,2.8vw,38px);font-weight:700;
-  letter-spacing:.06em;padding:14px 26px;border-radius:16px;background:rgba(6,6,13,.82);border:1px solid rgba(139,92,246,.5);
-  box-shadow:0 0 60px rgba(139,92,246,.4);backdrop-filter:blur(8px);white-space:nowrap}
-.lockflash .in small{display:block;font-size:11px;letter-spacing:.24em;color:var(--violet-hi);font-weight:700;margin-bottom:4px;font-family:var(--font-ui)}
-.lockflash.go{animation:lockK 1.5s var(--ease-out)}
-@keyframes lockK{0%{opacity:0;transform:scale(1.4)}12%{opacity:1;transform:scale(.97)}20%{transform:scale(1)}78%{opacity:1}100%{opacity:0;transform:scale(1.04)}}
+/* THE RESULT BANNER OWNS THE TOP OF THE CHART AND IS NEVER OCCLUDED.
+   This plate used to sit dead centre (`inset:0; place-items:center`) and the
+   lock of round N+1 lands while round N's banner is still up — so the plate
+   cut the banner's third line ("400.00 stake → 0.00 returned") in half. It is
+   now anchored to the BOTTOM of the stage: the banner is top-anchored, this is
+   bottom-anchored, so at every viewport height the two are disjoint by
+   construction rather than by arithmetic. It is also smaller, and it flashes
+   in ~1s instead of lingering for 1.5s. */
+.lockflash{position:absolute;left:0;right:0;bottom:0;top:auto;display:flex;justify-content:center;
+  padding:0 16px 22px;z-index:4;pointer-events:none;opacity:0}
+.lockflash .in{font-family:var(--font-num);font-variant-numeric:tabular-nums;font-size:clamp(19px,2.1vw,28px);font-weight:700;
+  letter-spacing:.06em;padding:9px 20px 10px;border-radius:13px;background:rgba(6,6,13,.84);border:1px solid rgba(139,92,246,.5);
+  box-shadow:0 0 44px rgba(139,92,246,.34);backdrop-filter:blur(8px);white-space:nowrap;text-align:center}
+.lockflash .in small{display:block;font-size:10px;letter-spacing:.24em;color:var(--violet-hi);font-weight:700;margin-bottom:3px;font-family:var(--font-ui)}
+.lockflash.go{animation:lockK 1.05s var(--ease-out)}
+@keyframes lockK{0%{opacity:0;transform:scale(1.22)}14%{opacity:1;transform:scale(.98)}24%{transform:scale(1)}62%{opacity:1}100%{opacity:0;transform:scale(1.03)}}
 /* the result banner now owns the 104-252px band, so the near-miss chip drops
    underneath it: both fire together on a near miss, stacked, never overlapping */
 .nearmiss{position:absolute;left:50%;top:264px;transform:translateX(-50%);z-index:5;pointer-events:none;opacity:0;
@@ -617,7 +633,16 @@ button{background:none;border:0;cursor:pointer}
   display:none;overflow-y:auto;padding:4.5vh 4vw}
 #cta.on{display:block}
 .ctaw{max-width:1180px;margin:0 auto;text-align:center}
-.up{opacity:0;animation:fadeUp .8s var(--ease-out) forwards}
+/* SCOPED ON PURPOSE. This used to be a bare `.up{opacity:0;animation:fadeUp…}`
+   meant only for the closing slide's stagger — but `up` is also the DIRECTION
+   token on `.side.up`, `.bigbtn.up`, `.dbig.up`, `.hrow .arw.up`, `.wintag.up`
+   and the settlement modal's `.kv .v.big.up`. A `forwards` fill outranks every
+   normal declaration, so the fill's `opacity:1` silently defeated
+   `.side.dim{opacity:.32}` and `.bigbtn.dimmed{opacity:.38}` — the UP side of
+   a round card and the UP button never dimmed while DOWN did — and its
+   `transform:none` killed the UP button's hover lift and active press. Never
+   put a single-class animation rule in a shared namespace. */
+#cta .up{opacity:0;animation:fadeUp .8s var(--ease-out) forwards}
 #cta .eyebrow{font-size:11.5px;letter-spacing:.4em;color:var(--cyan);text-transform:uppercase;font-weight:700;margin-bottom:14px}
 #cta h2{font-family:var(--font-num);font-size:clamp(38px,5.4vw,66px);font-weight:700;line-height:1.05;margin-bottom:13px}
 #cta h2 em{font-style:normal;background:linear-gradient(100deg,var(--violet-hi),var(--cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
@@ -741,14 +766,25 @@ button{background:none;border:0;cursor:pointer}
 .betcard.lost{border-left-color:var(--red);background:rgba(255,59,92,.13)}
 .betcard.lost .v{color:#FF8098}
 
-/* ---------- 4. floating balance delta ---------- */
-.baldelta{position:absolute;left:calc(100% + 8px);top:9px;z-index:5;pointer-events:none;white-space:nowrap;
-  font-family:var(--font-num);font-variant-numeric:tabular-nums;font-size:20px;font-weight:700;
-  text-shadow:0 2px 10px rgba(4,4,10,.8);animation:bdFloat 1.1s var(--ease-out) forwards}
+/* ---------- 4. floating balance delta ----------
+   It used to be `left:calc(100% + 8px)` — eight pixels to the RIGHT of the
+   balance box, which in this top bar is exactly where the AUTO / MANUAL
+   segmented control lives, so a big win printed "+6,365.70" straight across a
+   control. The top bar is 62px of wall-to-wall furniture: there is no free
+   gutter to float into. So the chip no longer floats anywhere — it covers the
+   balance box itself (`inset:-1px`, so it cannot physically escape it) and
+   reads as the box flashing the delta before revealing the new balance. */
+.baldelta{position:absolute;inset:-1px;z-index:9;pointer-events:none;white-space:nowrap;
+  display:grid;place-items:center;border-radius:13px;overflow:hidden;
+  background:linear-gradient(135deg,rgba(6,6,13,.93),rgba(6,6,13,.88));
+  border:1px solid currentColor;box-shadow:0 0 22px rgba(4,4,10,.55);
+  font-family:var(--font-num);font-variant-numeric:tabular-nums;font-size:21px;font-weight:700;
+  text-shadow:0 2px 10px rgba(4,4,10,.8);animation:bdFloat 1.25s var(--ease-out) forwards}
 @keyframes bdFloat{
-  0%{opacity:0;transform:translateY(5px)}
-  16%{opacity:1;transform:translateY(0)}
-  100%{opacity:0;transform:translateY(-26px)}}
+  0%{opacity:0;transform:scale(.92)}
+  12%{opacity:1;transform:scale(1)}
+  70%{opacity:1;transform:scale(1)}
+  100%{opacity:0;transform:scale(1)}}
 
 /* ---------- 5. MY ROUNDS strip ---------- */
 .mine{padding:11px 12px 12px;display:flex;flex-direction:column;gap:8px;flex:0 0 auto}
@@ -831,7 +867,7 @@ button{background:none;border:0;cursor:pointer}
   .rbanner.in{animation:rbFadeIn .3s linear forwards}
   .rbanner.out{animation:rbFadeOut .3s linear forwards}
   .rbanner.in .ring{animation:none;opacity:0}
-  .baldelta{animation:bdFloat 1.1s linear forwards}
+  .baldelta{animation:bdFloat 1.25s linear forwards}
 }
 </style>
 </head>
@@ -1037,7 +1073,14 @@ button{background:none;border:0;cursor:pointer}
         <div class="stakerow">
           <span class="lbl">Stake</span>
           <div class="field">
-            <input id="stakeIn" type="number" min="1" step="10" value="250" inputmode="decimal" aria-label="Stake amount" />
+            <!-- type=text, NOT type=number: Chrome renders a number input's
+                 value through the BROWSER locale, so on a comma-decimal
+                 machine a programmatically set 9557.72 was drawn as "9557,72"
+                 with no grouping, beside a UI that writes 9,557.72 everywhere
+                 else. The field now owns its own formatting (see stakeText /
+                 parseAmt) and is read back through a comma-tolerant parse. -->
+            <input id="stakeIn" type="text" value="250.00" inputmode="decimal" autocomplete="off"
+                   spellcheck="false" aria-label="Stake amount" />
             <span class="suf">USDT</span>
           </div>
           <div class="chips">
@@ -1305,6 +1348,24 @@ const usd = (n) => (n < 0 ? '-$' : '$') + nf2.format(Math.abs(n));
 const sgn = (n) => (n >= 0 ? '+' : '-');
 const pct3 = (n) => (n >= 0 ? '+' : '−') + Math.abs(n).toFixed(3) + '%';
 const mx = (n) => nf2.format(n) + '×';
+/* ---- the stake field's own number convention ----
+   One pair of functions, used for every read and every write of #stakeIn, so
+   what the player sees is always what the engine holds. `stakeText` writes the
+   SAME convention as the rest of the UI (grouped, two decimals: 9,557.72) and
+   `parseAmt` reads it back — tolerating the grouping commas it wrote, a comma
+   used as a decimal mark by a European typist, spaces and a stray currency
+   suffix. A bare parseFloat('9,557.72') truncates to 9 and parseFloat('9557,72')
+   to 9557: either one silently changes the stake the player is about to risk. */
+function parseAmt(s) {
+  let t = String(s == null ? '' : s).replace(/[^0-9.,]/g, '');
+  const lastC = t.lastIndexOf(','), lastD = t.lastIndexOf('.');
+  if (lastC > lastD) t = t.replace(/\./g, '').replace(',', '.');  // 9557,72 → 9557.72
+  else t = t.replace(/,/g, '');                                   // 9,557.72 → 9557.72
+  t = t.replace(/(\..*)\./g, '$1');
+  const v = parseFloat(t);
+  return isFinite(v) ? v : NaN;
+}
+const stakeText = (n) => nf2.format(Math.max(0, n || 0));
 const REDUCED = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 const HEXC = '0123456789abcdef';
 /* canvas font stack — mirrors --font-num so the chart matches the DOM even offline */
@@ -1572,6 +1633,10 @@ const D = {};
  'rbanner','rbRing','rbL1','rbL2','rbL3','edgeGlow','betCard','bcV','bcS',
  'myRounds','mineRow','mineSum','wlPill','wlWord','wlPnl'
 ].forEach(id => { D[id] = $(id); });
+/* tooltip anchors: the UP / DOWN word, so the native tooltip pops in the
+   button's empty middle instead of across the pool line at its foot */
+D.upTtl = D.btnUp.querySelector('.ttl');
+D.downTtl = D.btnDown.querySelector('.ttl');
 
 function toast(msg, color) {
   const el = document.createElement('div');
@@ -1625,13 +1690,20 @@ function flyChip(text, fromEl, toEl, down) {
 }
 function coins() {
   if (REDUCED) return;
+  /* The burst used to start at the CENTRE of the balance box and fire upwards
+     (angles in the negative half-plane), so all twenty coins spent their first
+     third of a second painting over the top bar — the asset switcher, the
+     oracle pill, the AUTO / MANUAL toggle, all of it. It now spawns just under
+     the bar and fans DOWNWARD, which is where gravity was taking it anyway. */
   const t = D.balBox.getBoundingClientRect();
-  const cx = t.left + t.width / 2, cy = t.top + t.height / 2;
+  const bar = document.querySelector('.topbar');
+  const floorY = bar ? bar.getBoundingClientRect().bottom + 3 : t.bottom + 3;
+  const cx = t.left + t.width / 2, cy = Math.max(t.bottom + 3, floorY);
   for (let i = 0; i < 20; i++) {
     const el = document.createElement('div');
     el.className = 'coin'; el.style.left = cx + 'px'; el.style.top = cy + 'px';
     document.body.appendChild(el);
-    const a = rnd(-2.9, -0.3), sp = rnd(70, 220);
+    const a = rnd(0.32, 2.82), sp = rnd(60, 190);   // 0..π = downward fan
     const dx = Math.cos(a) * sp, dy = Math.sin(a) * sp;
     const kill = () => { if (el.parentNode) el.parentNode.removeChild(el); };
     if (el.animate) {
@@ -2384,6 +2456,21 @@ function drawCandles(lockP, live) {
 /* ==========================================================================
    10. HUD
    ========================================================================== */
+/* Rewrite a container ONLY when its markup actually changed.
+   renderCards() runs on a 180ms throttle and used to reassign these three
+   innerHTMLs unconditionally. Every reassignment destroys and recreates the
+   chip inside, which restarts its `posIn` entrance (.45s, on an overshoot
+   curve starting at opacity:0 / scale(.85) / translateY(6px)) — so a chip that
+   only ever got 180ms of a 450ms animation before being replaced sat there
+   permanently half-faded and mid-squash. That is the "ghosted, clipped and
+   illegible" LOST row in the EXPIRED card, and the LIVE card's position badge
+   and the NEXT card's chip were doing the same thing more quietly. */
+function setHtml(el, html) {
+  if (!el || el.__html === html) return;
+  el.__html = html;
+  el.innerHTML = html;
+}
+function setTitle(el, t) { if (el && el.title !== t) el.title = t; }
 function posChip(r, live) {
   if (!r || !r.bet) return '';
   const b = r.bet;
@@ -2454,14 +2541,14 @@ function renderCards(anim) {
     D.nPool.textContent = nf0.format(Math.round(n.poolUp + n.poolDown)) + ' USDT';
     D.nSideUp.classList.toggle('dim', !!(n.bet && n.bet.side !== 'up'));
     D.nSideDown.classList.toggle('dim', !!(n.bet && n.bet.side !== 'down'));
-    D.nMyPos.innerHTML = posChip(n);
+    setHtml(D.nMyPos, posChip(n));
   }
   if (l) {
     D.liveNo.textContent = '#' + l.no;
     D.lLock.textContent = money(l.lockPrice);
     D.lUpM.textContent = mx(l.lockPayUp);
     D.lDownM.textContent = mx(l.lockPayDown);
-    D.lMyPos.innerHTML = posBadge(l);
+    setHtml(D.lMyPos, posBadge(l));
     const win = l.lockT != null ? (S.price >= l.lockPrice ? 'up' : 'down') : null;
     D.lSideUp.classList.toggle('won', win === 'up');
     D.lSideDown.classList.toggle('won', win === 'down');
@@ -2476,7 +2563,7 @@ function renderCards(anim) {
     D.eDelta.textContent = sgn(d) + '$' + nf2.format(Math.abs(d)) + '  (' + pct3(d / e.lockPrice * 100) + ')';
     D.eDelta.style.color = d >= 0 ? 'var(--green-hi)' : 'var(--red-hi)';
     D.eSettle.textContent = '✓ ' + e.lat.toFixed(2) + 's';
-    D.eWinTag.innerHTML = '<span class="wintag ' + e.result + '">' + (e.result === 'up' ? '▲ UP WINS' : '▼ DOWN WINS') + '</span>' + posChip(e);
+    setHtml(D.eWinTag, '<span class="wintag ' + e.result + '">' + (e.result === 'up' ? '▲ UP WINS' : '▼ DOWN WINS') + '</span>' + posChip(e));
     D.cardExp.classList.toggle('win', !!(e.bet && e.bet.won));
     D.cardExp.classList.toggle('lose', !!(e.bet && e.bet.won === false));
     if (anim) {
@@ -2528,8 +2615,14 @@ function syncBetUi() {
     (isLive && isPend) ? 'live this round and locked in for the next one'
     : isLive ? 'live — this position is settling now, P&L is running'
     : 'placed — locks in at the next round boundary';
-  D.btnUp.title = ringTip(upHas, upLive, upPend);
-  D.btnDown.title = ringTip(downHas, downLive, downPend);
+  /* The tooltip hangs off the UP / DOWN WORD at the top of the button, not off
+     the whole 120px button. A native tooltip renders a line below the pointer,
+     so a title on the button body popped wherever the pointer happened to be —
+     usually straight across the pool line at the bottom
+     ("25,660 USDT · 555 players"). Anchored to the label, it can only ever
+     appear in the button's empty middle band. */
+  setTitle(D.upTtl, ringTip(upHas, upLive, upPend));
+  setTitle(D.downTtl, ringTip(downHas, downLive, downPend));
   const bonusOn = S.streak >= STREAK_MIN;
   D.btnUp.classList.toggle('streak', bonusOn);
   D.btnDown.classList.toggle('streak', bonusOn);
@@ -2606,8 +2699,10 @@ function updateDelta() {
   const now = D.dBig.className;
   const dirChanged = now.indexOf(dirCls) === -1;
   if (dirChanged) {
-    D.dBig.style.setProperty('--r0', up ? '180deg' : '0deg');
-    D.dBig.style.setProperty('--r1', up ? '0deg' : '180deg');
+    /* one source of truth for the arrow angle: the static rule for this
+       direction class, and the spring's own end state. They are written in the
+       same frame as the sign, so the two can never disagree (see arwSpring). */
+    D.dBig.style.setProperty('--r1', flat ? '90deg' : (up ? '0deg' : '180deg'));
     clearTimeout(dbigFlipT);
     dbigFlipT = setTimeout(() => {
       D.dBig.className = D.dBig.className.replace(' flip', '');
@@ -3143,7 +3238,7 @@ function updateGame(now, dt) {
   if (S.mode === 'auto' && n && n.scriptIdx != null && !S.demoBetDone && S.gt >= S.demoBetAt) {
     S.demoBetDone = true;
     const sc = SCRIPT[n.scriptIdx];
-    S.stake = sc.stake; D.stakeIn.value = String(sc.stake);
+    setStake(sc.stake);
     placeBet(sc.side, sc.stake, true);
     toast(sc.say, 'var(--violet-hi)');
   }
@@ -3331,8 +3426,16 @@ D.segAuto.addEventListener('click', () => setMode('auto'));
 D.segManual.addEventListener('click', () => setMode('manual'));
 D.btnUp.addEventListener('click', () => userBet('up'));
 D.btnDown.addEventListener('click', () => userBet('down'));
+/* Writes the field AND the engine from one number. Used by the chips, the
+   auto-demo director and the reset, so nothing can put a string into the input
+   that the input handler would then read back as a different number. */
+function setStake(n) {
+  S.stake = Math.max(0, isFinite(n) ? n : 0);
+  D.stakeIn.value = stakeText(S.stake);
+  D.stakeIn.dispatchEvent(new Event('input'));
+}
 D.stakeIn.addEventListener('input', () => {
-  const v = parseFloat(D.stakeIn.value);
+  const v = parseAmt(D.stakeIn.value);
   S.stake = isNaN(v) ? 0 : Math.max(0, v);
   if (S.stake > S.balance) {
     D.stNote.innerHTML = '<b>Stake exceeds balance</b> — you have ' + money(S.balance) + ' USDT';
@@ -3342,13 +3445,15 @@ D.stakeIn.addEventListener('input', () => {
     D.stNote.className = 'stnote';
   }
 });
+/* re-format only when the player stops editing, so the grouping commas never
+   jump the caret mid-keystroke */
+D.stakeIn.addEventListener('change', () => setStake(parseAmt(D.stakeIn.value)));
+D.stakeIn.addEventListener('blur', () => setStake(parseAmt(D.stakeIn.value)));
 qa('[data-st]').forEach(b => b.addEventListener('click', () => {
   const k = b.getAttribute('data-st');
-  if (k === 'half') S.stake = Math.max(1, Math.round(S.stake / 2 * 100) / 100);
-  else if (k === 'max') S.stake = Math.floor(S.balance * 100) / 100;
-  else S.stake = parseFloat(k);
-  D.stakeIn.value = String(S.stake);
-  D.stakeIn.dispatchEvent(new Event('input'));
+  if (k === 'half') setStake(Math.max(1, Math.round(S.stake / 2 * 100) / 100));
+  else if (k === 'max') setStake(Math.floor(S.balance * 100) / 100);
+  else setStake(parseAmt(k));
 }));
 qa('#assets button').forEach(b => b.addEventListener('click', () => queueAsset(b.getAttribute('data-asset'))));
 D.mLine.addEventListener('click', () => setChartMode('line'));
@@ -3489,7 +3594,7 @@ function resetDemo() {
   S.scene = 'game';
   S.balance = 10000; S.displayBalance = 10000;
   D.balVal.textContent = money(10000);
-  S.stake = 250; D.stakeIn.value = '250';
+  S.stake = 250; D.stakeIn.value = stakeText(250);
   S.streak = 2; S.bestStreak = 11;
   S.accWins = 191; S.accTotal = 280;
   S.rank = 7; S.prevRank = 7;
@@ -3506,7 +3611,7 @@ function resetDemo() {
   qa('#assets button').forEach(b => b.classList.remove('queued'));
   D.histList.innerHTML = '';
   D.spdChip.style.display = 'none';
-  D.eClose.textContent = '—'; D.eDelta.textContent = '—'; D.eWinTag.innerHTML = '';
+  D.eClose.textContent = '—'; D.eDelta.textContent = '—'; setHtml(D.eWinTag, '');
   D.cardExp.className = 'rcard exp';
   setMode('auto', true);
   buildLb();

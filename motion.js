@@ -206,15 +206,15 @@
 
     /* ---------- 9. next project strip on case pages ---------- */
     var ORDER = [
-      ['together-fun.html', 'Together.fun', 'Play-to-Earn ⋆ Game UX ⋆ Web3', 'assets/stack-tf.webp'],
-      ['4ire.html', '4IRE RWA Platform', 'DAO Governance ⋆ RWA Tokenization', 'assets/stack-ire.webp'],
-      ['tons.html', 'TONS MONEY Capital', 'RWA Tokenization ⋆ Design System', 'assets/stack-tons.webp'],
-      ['neobank.html', 'NeoBank', 'Crypto-Fiat ⋆ Material Design 3', 'assets/stack-nb.webp'],
+      ['together-fun.html', 'Together.fun', 'Play-to-Earn ✳ Game UX ✳ Web3', 'assets/stack-tf.webp'],
+      ['4ire.html', '4IRE RWA Platform', 'DAO Governance ✳ RWA Tokenization', 'assets/stack-ire.webp'],
+      ['tons.html', 'TONS MONEY Capital', 'RWA Tokenization ✳ Design System', 'assets/stack-tons.webp'],
+      ['neobank.html', 'NeoBank', 'Crypto-Fiat ✳ Material Design 3', 'assets/stack-nb.webp'],
       ['sentinel.html', 'Sentinel', 'AI-built in 20 hours', 'assets/stack-sn.webp'],
       ['earthbyt.html', 'EarthByt', 'AI-built in 20 hours', 'assets/stack-eb.webp'],
-      ['nova.html', 'NOVA', 'AI-built in 8 hours', 'assets/ai/nova-intro.webp'],
-      ['4ire-web.html', '4IRE Labs website', 'Glass UI ⋆ Responsive', 'assets/ai/4ire-process.webp'],
-      ['rnd-able.html', 'RNDpoint and ABLE Platform', 'Audit ⋆ Tracking ⋆ Speed ⋆ Page system', 'assets/rnd/menu.webp']
+      ['nova.html', 'NOVA', 'AI-built in 8 hours', 'assets/stack-nova.webp'],
+      ['4ire-web.html', '4IRE Labs website', 'Glass UI ✳ Responsive', 'assets/stack-4w.webp'],
+      ['rnd-able.html', 'RNDpoint and ABLE Platform', 'Audit ✳ Tracking ✳ Speed ✳ Page system', 'assets/stack-rnd.webp']
     ];
     var here = location.pathname.split('/').pop() || 'index.html';
     var idx = ORDER.map(function (o) { return o[0]; }).indexOf(here);
