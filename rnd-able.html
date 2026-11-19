@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RNDpoint and ABLE Platform — website rescue and growth with AI — Nadzeya Huts</title>
+<meta name="description" content="Two company websites, RNDpoint and ABLE Platform: audit of 243 pages, SEO and AI-search fixes, speed, legal pages, analytics and a reusable page system, built with AI agents by Nadzeya Huts.">
+<meta name="keywords" content="AI-native product designer, AI prototyping, design engineer, Claude Design, Figma AI, Figma Make, vibe coding, website redesign, rebranding, WordPress, HubSpot, GA4, SEO, AI agents">
+<meta name="robots" content="index,follow">
+<meta name="author" content="Nadzeya Huts">
+<link rel="canonical" href="https://nadzeyahuts-spec.github.io/rnd-able.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nadzeya Huts — Portfolio">
+<meta property="og:url" content="https://nadzeyahuts-spec.github.io/rnd-able.html">
+<meta property="og:title" content="RNDpoint and ABLE Platform — website rescue and growth with AI">
+<meta property="og:description" content="Website rescue and growth for RNDpoint and ABLE Platform with AI agents.">
+<meta property="og:image" content="https://nadzeyahuts-spec.github.io/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://nadzeyahuts-spec.github.io/assets/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="portfolio.css">
+
+<style>
+:root{--ease:cubic-bezier(.22,1,.36,1);--card2:rgba(255,255,255,.025)}
+body{background:#121115;overflow-x:hidden}
+.nav{position:sticky;top:0;z-index:40;background:rgba(18,17,21,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.back{display:inline-flex;gap:9px;color:var(--muted-2);font-size:14px;font-weight:500;transition:color .2s}.back:hover{color:#fff}
+.proj{font-size:13px;color:var(--faint)}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:calc(var(--k,0)*80ms)}
+.rv.in,html:not(.js) .rv{opacity:1;transform:none}
+.tags{margin:0 0 18px;color:var(--muted);font-size:clamp(14px,1.4vw,16px)}
+h1.big{font-size:clamp(40px,6vw,84px);line-height:1;letter-spacing:-.035em;font-weight:500;margin:0}
+.lead{margin:20px 0 0;color:var(--muted-2);font-size:clamp(16px,1.7vw,20px);line-height:1.55;max-width:34em}
+.statcard{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:22px;background:rgba(255,255,255,.02);overflow:hidden}
+.statcard .st{padding:clamp(18px,2.4vw,28px) 16px;text-align:center}.statcard .st+.st{border-left:1px solid var(--line)}
+.statcard .n{font-family:var(--head);font-weight:500;font-size:clamp(24px,3.2vw,40px);letter-spacing:-.03em;line-height:1.05}
+.statcard .l{margin-top:8px;color:var(--muted);font-size:13.5px;line-height:1.4}
+@media(max-width:560px){.statcard{grid-template-columns:1fr}.statcard .st+.st{border-left:0;border-top:1px solid var(--line)}}
+.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:clamp(22px,3.4vh,32px)}
+.bt{display:inline-flex;align-items:center;gap:10px;font-weight:500;font-size:15px;border-radius:14px;padding:14px 22px;border:1px solid var(--line-2);color:#fff;background:transparent;transition:background .2s,border-color .2s}
+.bt:hover{background:rgba(255,255,255,.07)}.bt.solid{background:rgba(255,255,255,.12);border-color:transparent}.bt.solid:hover{background:rgba(255,255,255,.18)}
+.sec{padding-block:clamp(48px,8vh,96px)}
+.sec>.wrap>h2{font-size:clamp(28px,3.8vw,46px);letter-spacing:-.03em;line-height:1.05;margin:0 0 clamp(20px,3.6vh,34px)}
+.acc{border:1px solid var(--line);border-radius:28px;background:rgba(255,255,255,.02);margin-bottom:14px;transition:background .3s,border-color .3s}
+.acc.open{background:rgba(255,255,255,.03)}
+.acc:hover{border-color:var(--line-2)}
+.acc-h{all:unset;box-sizing:border-box;cursor:pointer;width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:clamp(20px,2.6vw,32px) clamp(22px,3vw,40px)}
+.acc-h:focus-visible{outline:2px solid #fff;outline-offset:-4px;border-radius:28px}
+.acc-t{display:flex;flex-direction:column;gap:8px}
+.acc-n{font-size:15px;color:var(--faint);font-variant-numeric:tabular-nums}
+.acc-nm{font-family:var(--head);font-size:clamp(22px,2.6vw,32px);letter-spacing:-.02em;font-weight:500;line-height:1.12}
+.chev{flex:none;width:20px;height:20px;color:var(--muted);transition:transform .35s var(--ease),color .2s}
+.acc-h:hover .chev{color:#fff}.acc.open .chev{transform:rotate(180deg)}
+.acc-b{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--ease)}
+.acc.open .acc-b{grid-template-rows:1fr}
+.acc-i{overflow:hidden;min-height:0}
+.acc-c{padding:0 clamp(22px,3vw,40px) clamp(22px,3vw,36px);color:var(--muted-2);font-size:clamp(15px,1.5vw,17px);line-height:1.7;max-width:60em}
+.acc-c p{margin:0 0 14px}.acc-c b,.acc-c strong{color:#fff;font-weight:600}
+.acc-c ul{list-style:none;margin:0 0 14px;padding:0;display:flex;flex-direction:column;gap:10px}
+.acc-c li{display:flex;gap:12px}.acc-c li::before{content:"✳";color:var(--muted);flex:none}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.chips span{font-size:12.5px;color:var(--muted-2);background:rgba(255,255,255,.04);border:1px solid var(--line-2);border-radius:30px;padding:6px 12px}
+.tbl{border:1px solid var(--line-2);border-radius:20px;overflow:hidden;margin:6px 0 16px}
+.tbl .r{display:grid;grid-template-columns:1.1fr 1fr 1.4fr;gap:12px;padding:16px 22px;border-top:1px solid var(--line);font-size:15px}
+.tbl .r:first-child{border-top:0;background:rgba(255,255,255,.07);color:var(--muted-2)}
+.tbl .r b{color:#fff}
+.bar{height:8px;border-radius:5px;background:rgba(255,255,255,.1);position:relative;overflow:hidden;align-self:center}
+.bar i{position:absolute;left:0;top:0;bottom:0;background:#e9e9ec;border-radius:5px;width:var(--w)}
+.end{text-align:center;padding:clamp(40px,7vh,90px) 0 clamp(64px,10vh,110px)}
+.end h2{font-size:clamp(30px,5vw,56px);letter-spacing:-.03em;margin:0 auto 26px;max-width:18ch;line-height:1.05}
+.end .btns{justify-content:center}
+#toTop{position:fixed;right:clamp(18px,3vw,34px);bottom:clamp(18px,3vw,34px);z-index:60;width:52px;height:52px;border-radius:50%;border:1px solid var(--line-2);background:#1b1b20;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .25s,transform .25s,visibility .25s}
+#toTop.show{opacity:1;visibility:visible;transform:none}#toTop svg{width:22px;height:22px}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.acc-b,.chev{transition:none}}
+</style>
+<style>
+  /* footer social */
+  .social { display: flex; justify-content: center; gap: 28px; padding: 10px 0 24px; }
+  .social a { display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--muted); transition: color .2s ease; font-size: 13px; }
+  .social a:hover { color: var(--ink); }
+  .social .glyph { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,.02); border: 1px solid rgba(255,255,255,.07); color: #fff; display: flex; align-items: center; justify-content: center; transition: background .2s ease; }
+  .social a:hover .glyph { background: rgba(255,255,255,.2); }
+  .social .glyph svg { width: 20px; height: 20px; display: block; }
+</style><style>
+.hero3{padding:clamp(48px,9vh,110px) 0 clamp(24px,5vh,56px);text-align:center}
+.hero3 .lead{margin-left:auto;margin-right:auto}
+.hero3 .btns{justify-content:center}
+.hero3 .statcard{max-width:760px;margin:clamp(28px,5vh,52px) auto 0}
+.meta{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(32px,6vw,80px)}
+@media(max-width:880px){.meta{grid-template-columns:1fr}}
+.meta dl{display:flex;flex-direction:column;gap:22px;margin:0}
+.mr{display:grid;grid-template-columns:110px 1fr;gap:16px}.mr dt{color:var(--faint);font-size:14px}.mr dd{margin:0;color:var(--muted-2);font-size:15px;line-height:1.55}
+.prose h3{font-size:14px;letter-spacing:.04em;color:var(--faint);font-weight:500;margin:0 0 12px}
+.prose p{color:var(--muted-2);font-size:clamp(16px,1.7vw,18px);line-height:1.7;margin:0 0 16px}.prose p strong{color:#fff;font-weight:600}
+.note{font-size:13.5px;color:var(--faint);line-height:1.6;margin-top:18px}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="wrap"><a class="back" href="ai-lab.html"><span>←</span> AI Lab</a><span class="proj">Case study ⋆ RNDpoint and ABLE</span></div></nav>
+<main>
+<section class="wrap hero3">
+<p class="tags rv">Website rescue ⋆ SEO ⋆ Design system ⋆ AI agents</p>
+<h1 class="big rv" style="--k:1;font-size:clamp(34px,4.6vw,64px)">RNDpoint and ABLE Platform.<br>Two websites, one team of AI agents.</h1>
+<p class="lead rv" style="--k:2">I audited, fixed and rebuilt the web presence of a fintech software company, with AI doing the crawling and checking and me making the decisions.</p>
+<div class="btns rv" style="--k:3"><a class="bt solid" href="https://t.me/NadzeyaHu" target="_blank" rel="noopener">Contact me</a><a class="bt" href="Nadzeya-Huts-CV.pdf" download="Nadzeya-Huts-CV.pdf">CV</a></div>
+<div class="statcard rv" style="--k:4"><div class="st"><div class="n">243</div><div class="l">pages audited</div></div><div class="st"><div class="n">59 → 92</div><div class="l">mobile PageSpeed on one key ABLE page</div></div><div class="st"><div class="n">12</div><div class="l">blocks in the new page system</div></div></div>
+</section>
+<section class="sec"><div class="wrap meta">
+<dl class="rv"><div class="mr"><dt>Timeline:</dt><dd>August to November 2026, ongoing</dd></div><div class="mr"><dt>Sites:</dt><dd>rndpoint.com (fintech software development), ableplatform.io (loan software platform)</dd></div><div class="mr"><dt>Tools:</dt><dd>Figma, Claude agents, WordPress with ACF PRO, Yoast and AIOSEO, HubSpot, GA4, Search Console, Tag Manager, Clarity, PageSpeed, Playwright</dd></div><div class="mr"><dt>Scope:</dt><dd>Audit, SEO, speed, legal pages, analytics, page design and templates, content</dd></div><div class="mr"><dt>Role:</dt><dd>Designer and web lead. I reported to the company's director and worked with its product owner and lawyer.</dd></div></dl>
+<div class="prose rv"><h3>Background</h3><p>The company sells banking and lending software, and its two websites had grown over years: dead links, mixed brand names, heavy images, scattered forms and no way to see what worked. Its CRM, forms, analytics and search access also needed to be set up properly.</p><p><strong>How AI was used.</strong> Agents crawled the pages, measured speed, compared live text with approved documents and drafted first versions. Every claim, number and legal sentence was approved by the right person before it went live, and I decided what was good enough to ship.</p></div>
+</div></section>
+<section class="sec" style="padding-top:0"><div class="wrap"><h2 class="rv">What I did</h2><div class="acc rv open"><button class="acc-h" type="button" aria-expanded="true"><span class="acc-t"><span class="acc-n">1</span><span class="acc-nm">Audit and a plan the director could read</span></span><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 5 5 5-5"/></svg></button><div class="acc-b"><div class="acc-i"><div class="acc-c"><p>Both sites were audited in August 2026: <b>67 findings, 19 of them critical</b>. I turned them into one prioritized plan (P0, P1, P2) and wrote the status reports for the director in plain language: what a thing is, why it matters, what is done, what waits for a decision.</p>
+<ul><li>A full audit report and a shorter status report, kept in sync after every change.</li><li>A single spreadsheet plan with a status per item, so nothing got lost between weeks.</li><li>Open questions went to the company's owner as short, numbered questions with a proposed answer.</li></ul></div></div></div></div><div class="acc rv"><button class="acc-h" type="button" aria-expanded="false"><span class="acc-t"><span class="acc-n">2</span><span class="acc-nm">Search and AI visibility</span></span><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 5 5 5-5"/></svg></button><div class="acc-b"><div class="acc-i"><div class="acc-c"><p>Search Console access was lost and had to be recovered through DNS verification. Then the fixes started on both sites.</p>
+<ul><li><b>Headings:</b> every H1 to H3 on <b>243 pages</b> (133 on RNDpoint, 110 on ABLE) checked against one rule: sentence case, no capitals, no full stop. Real errors found along the way: two H1 merged into one, a Cyrillic letter inside a product name, a wrong "years of experience" number.</li><li><b>AI crawlers:</b> robots.txt rewritten for AI bots, sitemap cleaned, service pages without value set to noindex.</li><li><b>Sharing:</b> new Open Graph images at 1200×630 for the home pages and the best case studies.</li><li><b>Structured data:</b> organization markup and social profiles added through the theme.</li></ul></div></div></div></div><div class="acc rv"><button class="acc-h" type="button" aria-expanded="false"><span class="acc-t"><span class="acc-n">3</span><span class="acc-nm">Speed</span></span><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 5 5 5-5"/></svg></button><div class="acc-b"><div class="acc-i"><div class="acc-c"><p>On ABLE I measured <b>112 pages</b>. The server was fast; the weight was the problem: heavy PNG images and 35 to 45 scripts per page. The work went in order of effect: images to SVG and WebP, unused form plugins switched off, scripts deferred and minified, lazy loading fixed.</p>
+<div class="tbl"><div class="r"><span>ABLE loan origination page, mobile</span><span>PageSpeed</span><span>LCP</span></div><div class="r"><b>12 November</b><span>59</span><span>11.2 s</span></div><div class="r"><b>13 November, after the changes</b><b>92</b><b>2.9 s</b></div></div>
+<p>On RNDpoint I counted 458 raster images, 153 of them over 300 KB, and prepared the same path for them.</p></div></div></div></div><div class="acc rv"><button class="acc-h" type="button" aria-expanded="false"><span class="acc-t"><span class="acc-n">4</span><span class="acc-nm">A page system: RND 2026</span></span><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 5 5 5-5"/></svg></button><div class="acc-b"><div class="acc-i"><div class="acc-c"><p>Instead of designing page after page, I built a template the team can reuse: <b>12 blocks</b> (hero, logos, cards, lists, steps, quotes, FAQ with FAQPage markup, impact, projects with banner, stats, use cases) on top of the site's own page builder. Designs were made in Figma, the page content loads from presets, and a new service page can be assembled in an afternoon.</p>
+<ul><li>Motion kept quiet: content fades in with a 24 px shift, cards enter one by one, lists reveal item by item, the steps block stacks as you scroll.</li><li>Works with reduced-motion settings and has a fallback when scripts do not load. Checked at 375, 768, 1024 and 1440 px.</li><li>Used for new service pages: AI strategy, intelligent document processing, customer analytics, AI agents, loan origination, ProcessMIX and others.</li></ul></div></div></div></div><div class="acc rv"><button class="acc-h" type="button" aria-expanded="false"><span class="acc-t"><span class="acc-n">5</span><span class="acc-nm">A lead magnet worth downloading</span></span><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 5 5 5-5"/></svg></button><div class="acc-b"><div class="acc-i"><div class="acc-c"><p>The old "Digital Bank Market Report 2025" was replaced by a practical <b>Core banking modernisation guide 2027</b>: 15 A4 pages designed in Figma, with approaches compared, a roadmap, data migration, regulation and a partner scorecard. After the first version I made the layout denser and the type larger, because the pages felt empty.</p>
+<p>Every source was checked one by one. A popular "70%" statistic was left out because its original source could not be opened.</p></div></div></div></div><div class="acc rv"><button class="acc-h" type="button" aria-expanded="false"><span class="acc-t"><span class="acc-n">6</span><span class="acc-nm">Legal pages and AI-claims review</span></span><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 5 5 5-5"/></svg></button><div class="acc-b"><div class="acc-i"><div class="acc-c"><p>Privacy, Cookies, Terms of Use and Responsible AI were published on both sites exactly as approved by the company's lawyer, and I checked every paragraph, list item and table row against the approved document. ABLE got a light legal-page template that matches its blog.</p>
+<p>For ABLE I also mapped what its AI credit scoring means under the EU AI Act (high-risk class, obligations from December 2027) and listed the phrases on the site that make promises nobody could prove, such as "approve loans instantly" or "risk-free". Numbers without a source were taken out of the new designs.</p></div></div></div></div><div class="acc rv"><button class="acc-h" type="button" aria-expanded="false"><span class="acc-t"><span class="acc-n">7</span><span class="acc-nm">Analytics and forms</span></span><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 5 5 5-5"/></svg></button><div class="acc-b"><div class="acc-i"><div class="acc-c"><p>Forms on both sites moved from Zoho to HubSpot. A tag-manager listener now reports every successful HubSpot form, GA4 counts it as a key event, Search Console is linked to GA4 and heatmaps run through Microsoft Clarity. Before this, one site had zero key events.</p></div></div></div></div><div class="acc rv"><button class="acc-h" type="button" aria-expanded="false"><span class="acc-t"><span class="acc-n">8</span><span class="acc-nm">A new home page for ABLE</span></span><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 5 5 5-5"/></svg></button><div class="acc-b"><div class="acc-i"><div class="acc-c"><p>Search data showed that people looking for lender software outnumber people looking for in-house financing by roughly ten to one, while the home page spoke only to the second group. I drew a new home page for lenders in Figma, with two clear entry points, and removed every unconfirmed figure from it. The current page stays live until the owner decides.</p></div></div></div></div>
+<p class="note rv">Figures come from the audit and measurements made between August and November 2026. Speed is for one page, measured on mobile.</p></div></section>
+<section class="end"><div class="wrap rv"><h2>Have a site that needs rescuing?</h2><div class="btns"><a class="bt solid" href="https://t.me/NadzeyaHu" target="_blank" rel="noopener">Message on Telegram</a><a class="bt" href="mailto:nadzeyahuts@gmail.com">Email</a><a class="bt" href="ai-lab.html">Back to AI Lab</a></div></div></section>
+</main>
+<div class="wrap"><footer class="social">
+    <a href="about.html" aria-label="About me"><span class="glyph"><svg viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="6" r="3.6"></circle><path d="M3 17.2C3 13.9 6.1 11.5 10 11.5s7 2.4 7 5.7c0 .5-.4.8-.9.8H3.9c-.5 0-.9-.3-.9-.8z"></path></svg></span>about</a>
+    <a href="Nadzeya-Huts-CV.pdf" download="Nadzeya-Huts-CV.pdf" aria-label="Download CV"><span class="glyph"><svg viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M10.2 1L10.3053 1.0063C10.5062 1.02999 10.6933 1.12067 10.8363 1.26371C10.9793 1.40675 11.07 1.5938 11.0937 1.7947L11.1 1.9V5.5L11.1045 5.635C11.1367 6.06355 11.3212 6.46644 11.6246 6.77083C11.928 7.07521 12.3303 7.261 12.7587 7.2946L12.9 7.3H16.5L16.6053 7.3063C16.8062 7.32999 16.9933 7.42067 17.1363 7.56371C17.2793 7.70675 17.37 7.89381 17.3937 8.0947L17.4 8.2V16.3C17.4 16.9887 17.1369 17.6514 16.6644 18.1524C16.192 18.6535 15.5459 18.9551 14.8584 18.9955L14.7 19H5.7C5.01131 19 4.34864 18.7369 3.84757 18.2644C3.34649 17.792 3.0449 17.1459 3.0045 16.4584L3 16.3V3.7C2.99996 3.01131 3.26309 2.34864 3.73556 1.84757C4.20802 1.34649 4.8541 1.0449 5.5416 1.0045L5.7 1H10.2ZM12.9 13.6H7.5C7.26131 13.6 7.03239 13.6948 6.8636 13.8636C6.69482 14.0324 6.6 14.2613 6.6 14.5C6.6 14.7387 6.69482 14.9676 6.8636 15.1364C7.03239 15.3052 7.26131 15.4 7.5 15.4H12.9C13.1387 15.4 13.3676 15.3052 13.5364 15.1364C13.7052 14.9676 13.8 14.7387 13.8 14.5C13.8 14.2613 13.7052 14.0324 13.5364 13.8636C13.3676 13.6948 13.1387 13.6 12.9 13.6ZM12.9 10H7.5C7.26131 10 7.03239 10.0948 6.8636 10.2636C6.69482 10.4324 6.6 10.6613 6.6 10.9C6.6 11.1387 6.69482 11.3676 6.8636 11.5364C7.03239 11.7052 7.26131 11.8 7.5 11.8H12.9C13.1387 11.8 13.3676 11.7052 13.5364 11.5364C13.7052 11.3676 13.8 11.1387 13.8 10.9C13.8 10.6613 13.7052 10.4324 13.5364 10.2636C13.3676 10.0948 13.1387 10 12.9 10ZM8.4 6.4H7.5C7.26131 6.4 7.03239 6.49482 6.8636 6.6636C6.69482 6.83239 6.6 7.06131 6.6 7.3C6.6 7.53869 6.69482 7.76761 6.8636 7.9364C7.03239 8.10518 7.26131 8.2 7.5 8.2H8.4C8.6387 8.2 8.86761 8.10518 9.0364 7.9364C9.20518 7.76761 9.3 7.53869 9.3 7.3C9.3 7.06131 9.20518 6.83239 9.0364 6.6636C8.86761 6.49482 8.6387 6.4 8.4 6.4Z"/><path d="M16.4998 5.49934H12.8998L12.8989 1.89844L16.4998 5.49934Z"/></svg></span>CV</a>
+    <a href="mailto:nadzeyahuts@gmail.com" aria-label="Email"><span class="glyph"><svg viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M18.3334 6.2793V14.1668C18.3335 14.8045 18.0898 15.4181 17.6523 15.882C17.2149 16.346 16.6167 16.6252 15.9801 16.6626L15.8334 16.6668H4.16675C3.52907 16.6668 2.91549 16.4232 2.45153 15.9857C1.98758 15.5483 1.70833 14.95 1.67091 14.3135L1.66675 14.1668V6.2793L9.53758 11.5268L9.63425 11.5818C9.74817 11.6375 9.87329 11.6664 10.0001 11.6664C10.1269 11.6664 10.252 11.6375 10.3659 11.5818L10.4626 11.5268L18.3334 6.2793Z"/><path d="M15.8334 3.33301C16.7334 3.33301 17.5226 3.80801 17.9626 4.52217L10.0001 9.83051L2.0376 4.52217C2.24659 4.18286 2.53367 3.89842 2.87491 3.69258C3.21614 3.48674 3.60164 3.36546 3.99926 3.33884L4.16676 3.33301H15.8334Z"/></svg></span>mail</a>
+    <a href="https://t.me/NadzeyaHu" target="_blank" rel="noopener" aria-label="Telegram"><span class="glyph"><svg viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M17.1355 1.1052C17.3568 1.01205 17.5991 0.979925 17.837 1.01216C18.0749 1.0444 18.2999 1.13983 18.4884 1.28851C18.677 1.43719 18.8222 1.63369 18.9091 1.85756C18.9959 2.08142 19.0212 2.32447 18.9822 2.56141L16.951 14.8819C16.754 16.0703 15.45 16.7518 14.3601 16.1598C13.4484 15.6646 12.0943 14.9016 10.8763 14.1054C10.2673 13.7069 8.40184 12.4307 8.63111 11.5225C8.82814 10.7461 11.9627 7.82829 13.7538 6.09356C14.4568 5.41203 14.1362 5.01887 13.306 5.64577C11.2444 7.20229 7.93435 9.5693 6.83996 10.2356C5.87452 10.8231 5.37121 10.9234 4.76938 10.8231C3.6714 10.6404 2.65313 10.3574 1.82204 10.0126C0.698986 9.54691 0.753616 8.00293 1.82114 7.55335L17.1355 1.1052Z"/></svg></span>telegram</a>
+    <a href="https://www.linkedin.com/in/nadzeya-huts/" target="_blank" rel="noopener" aria-label="LinkedIn"><span class="glyph"><svg viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.9432 7.5752H10.9144V9.0552C11.3424 8.204 12.44 7.4392 14.0888 7.4392C17.2496 7.4392 18 9.1336 18 12.2424V18H14.8V12.9504C14.8 11.18 14.372 10.1816 13.2824 10.1816C11.7712 10.1816 11.1432 11.2576 11.1432 12.9496V18H7.9432V7.5752ZM2.456 17.864H5.656V7.4392H2.456V17.864ZM6.1144 4.04C6.11452 4.30822 6.06132 4.57379 5.95791 4.82127C5.85449 5.06875 5.70292 5.29321 5.512 5.4816C5.32051 5.67209 5.09336 5.82299 4.84354 5.92567C4.59371 6.02834 4.3261 6.08079 4.056 6.08C3.51168 6.07878 2.98953 5.86423 2.6016 5.4824C2.41144 5.29332 2.26043 5.0686 2.1572 4.8211C2.05397 4.57359 2.00055 4.30817 2 4.04C2 3.4984 2.216 2.98 2.6024 2.5976C2.98936 2.21431 3.51214 1.9995 4.0568 2C4.6024 2 5.1256 2.2152 5.512 2.5976C5.8984 2.98 6.1144 3.4984 6.1144 4.04Z"/></svg></span>LinkedIn</a>
+  </footer></div>
+
+<button id="toTop" type="button" aria-label="Back to top" title="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"></path><path d="m5 12 7-7 7 7"></path></svg></button>
+<script>
+(function(){
+document.documentElement.classList.add('js');
+var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var els=[].slice.call(document.querySelectorAll('.rv'));
+if(rm||!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')})}
+else{var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.08,rootMargin:'0px 0px -6% 0px'});els.forEach(function(e){io.observe(e)});setTimeout(function(){els.forEach(function(e){e.classList.add('in')})},2500)}
+[].forEach.call(document.querySelectorAll('.acc'),function(a){var b=a.querySelector('.acc-h');b.addEventListener('click',function(){var o=a.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false')})});
+var t=document.getElementById('toTop');addEventListener('scroll',function(){t.classList.toggle('show',scrollY>600)},{passive:true});
+t.addEventListener('click',function(){scrollTo({top:0,behavior:rm?'auto':'smooth'})});
+})();
+</script>
+
+</body>
+</html>
