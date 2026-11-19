@@ -6,19 +6,19 @@
 <title>Nadzeya Huts | AI Product Designer for Fintech &amp; Web3</title>
 <meta name="description" content="Nadzeya Huts is an AI product designer for fintech and Web3. 16 years in design, 30+ products delivered, case studies and AI-built prototypes." />
 <meta name="author" content="Nadzeya Huts" />
-<link rel="canonical" href="https://nadzeyahuts-spec.github.io/" />
+<link rel="canonical" href="https://nadzeyahuts.github.io/" />
 <meta name="robots" content="index,follow" />
 <meta name="keywords" content="Nadzeya Huts, product designer, UX/UI designer, fintech designer, Web3 designer, crypto UX, design systems, AI product builder, portfolio" />
 <meta property="og:type" content="profile" />
 <meta property="og:site_name" content="Nadzeya Huts — Portfolio" />
-<meta property="og:url" content="https://nadzeyahuts-spec.github.io/" />
+<meta property="og:url" content="https://nadzeyahuts.github.io/" />
 <meta property="og:title" content="Nadzeya Huts | AI Product Designer for Fintech &amp; Web3" />
 <meta property="og:description" content="Nadzeya Huts is an AI product designer for fintech and Web3. 16 years in design, 30+ products delivered, case studies and AI-built prototypes." />
-<meta property="og:image" content="https://nadzeyahuts-spec.github.io/assets/og.png" />
+<meta property="og:image" content="https://nadzeyahuts.github.io/assets/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Nadzeya Huts | AI Product Designer for Fintech &amp; Web3" />
 <meta name="twitter:description" content="Nadzeya Huts is an AI product designer for fintech and Web3. 16 years in design, 30+ products delivered, case studies and AI-built prototypes." />
-<meta name="twitter:image" content="https://nadzeyahuts-spec.github.io/assets/og.png" />
+<meta name="twitter:image" content="https://nadzeyahuts.github.io/assets/og.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="portfolio.css" />
@@ -83,10 +83,10 @@ h1.name{font-size:clamp(46px,min(6.7vw,14vh),112px);line-height:.9;letter-spacin
 .ln>span{display:block}
 .pos{margin:clamp(14px,3vh,28px) 0 0;font-size:clamp(19px,min(2vw,3.4vh),27px);line-height:1.32;letter-spacing:-.015em;color:#fff;max-width:19em;font-weight:400;text-wrap:balance}
 .pos em{font-style:normal;color:var(--muted)}
-.proof{list-style:none;margin:clamp(16px,3.4vh,34px) 0 0;padding:0;display:flex;gap:clamp(18px,2.6vw,38px);flex-wrap:wrap}
+.proof{list-style:none;margin:clamp(16px,3.4vh,34px) 0 0;padding:0;display:flex;gap:clamp(16px,2.2vw,32px);flex-wrap:nowrap;justify-content:space-between;width:100%}@media(max-width:1180px){.proof{flex-wrap:wrap;justify-content:flex-start}.proof li:last-child span{white-space:normal}}
 .proof li{display:flex;flex-direction:column;gap:2px}
 .proof b{font-family:var(--head);font-weight:500;font-size:clamp(26px,min(2.8vw,5vh),38px);letter-spacing:-.03em;line-height:1.05}
-.proof span{font-size:12.5px;color:var(--muted);max-width:11em;line-height:1.35}
+.proof span{font-size:12.5px;color:var(--muted);line-height:1.35;white-space:nowrap}
 
 .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:clamp(18px,3.6vh,36px);align-items:center}
 .btn-p,.btn-g{display:inline-flex;align-items:center;gap:10px;font-weight:500;font-size:15px;border-radius:12px;padding:15px 24px;transition:transform var(--t-base) var(--ease-out),background var(--t-fast),border-color var(--t-fast),box-shadow var(--t-base);will-change:transform}
@@ -152,8 +152,8 @@ html.js .hint{opacity:0}html.js.go .hint{opacity:1;transition:opacity 1s 1.8s}
 .rbg{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(20px,3vw,44px);align-items:center;padding:6px clamp(20px,2.4vw,32px) clamp(20px,2.6vh,28px);opacity:0;transform:translateY(8px);transition:opacity .5s .1s,transform .6s .1s var(--ease-out)}
 .row.open .rbg{opacity:1;transform:none}
 .kp{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border:1px solid var(--line-2);border-radius:20px;overflow:hidden;margin:0 0 20px;padding:0;list-style:none}
-.kp li{padding:18px 18px 16px;border-left:1px solid var(--line-2)}.kp li:first-child{border-left:0}
-.kp b{display:block;font-family:var(--head);font-weight:500;font-size:clamp(22px,2.4vw,34px);letter-spacing:-.03em;line-height:1.05;color:#fff}
+.kp li{min-width:0;padding:16px 16px 14px;border-left:1px solid var(--line-2)}.kp li:first-child{border-left:0}
+.kp b{display:block;white-space:nowrap;font-family:var(--head);font-weight:500;font-size:clamp(20px,1.9vw,28px);letter-spacing:-.03em;line-height:1.05;color:#fff}
 .kp span{display:block;margin-top:8px;font-size:12.5px;color:var(--muted);line-height:1.4}
 .kb{display:block;height:5px;border-radius:3px;background:rgba(255,255,255,.1);margin-top:12px}.kb i{display:block;height:100%;border-radius:3px;background:#f2f2f4;width:var(--w)}.kb.g i{background:rgba(255,255,255,.35)}
 .rbc .bt{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:20px;background:#2b2b30;border:1px solid var(--line-2);color:#fff;font-size:15px;font-weight:500;transition:background var(--t-fast),transform var(--t-fast)}.rbc .bt:hover{background:#3a3a40}
@@ -241,8 +241,17 @@ html:not(.js) .reveal-s{opacity:1;transform:none}
 }
 </style>
 <script>document.documentElement.classList.add('js')</script>
-<meta name="theme-color" content="#121115"><style>.ss{font-size:1.35em;line-height:0;vertical-align:-.06em;display:inline-block;margin:0 .05em}</style><link rel="stylesheet" href="motion.css"><script src="motion.js" defer></script><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://nadzeyahuts-spec.github.io/#website","url":"https://nadzeyahuts-spec.github.io/","name":"Nadzeya Huts, portfolio","inLanguage":"en","publisher":{"@id":"https://nadzeyahuts-spec.github.io/#person"}},{"@type":"Person","@id":"https://nadzeyahuts-spec.github.io/#person","name":"Nadzeya Huts","jobTitle":"AI Product Designer for Fintech & Web3","description":"AI product designer for fintech and Web3. 16 years in design. I design, build and grow products with AI, from UX research to launch, analytics and SEO.","url":"https://nadzeyahuts-spec.github.io/","image":"https://nadzeyahuts-spec.github.io/assets/me.webp","email":"mailto:nadzeyahuts@gmail.com","sameAs":["https://www.linkedin.com/in/nadzeya-huts/","https://github.com/nadzeyahuts-spec","https://t.me/NadzeyaHu"],"knowsAbout":["Product Design","UX/UI Design","Design Systems","Fintech","Web3","RWA Tokenization","AI-assisted product development","Prototyping","Product Analytics","SEO"]},{"@type":"ProfilePage","@id":"https://nadzeyahuts-spec.github.io/#profile","url":"https://nadzeyahuts-spec.github.io/","name":"Nadzeya Huts | AI Product Designer for Fintech & Web3","mainEntity":{"@id":"https://nadzeyahuts-spec.github.io/#person"},"isPartOf":{"@id":"https://nadzeyahuts-spec.github.io/#website"}}]}</script></head>
-<body>
+<meta name="theme-color" content="#121115"><style>.ss{font-size:1.35em;line-height:0;vertical-align:-.06em;display:inline-block;margin:0 .05em}</style><link rel="stylesheet" href="motion.css"><script src="motion.js" defer></script><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://nadzeyahuts.github.io/#website","url":"https://nadzeyahuts.github.io/","name":"Nadzeya Huts, portfolio","inLanguage":"en","publisher":{"@id":"https://nadzeyahuts.github.io/#person"}},{"@type":"Person","@id":"https://nadzeyahuts.github.io/#person","name":"Nadzeya Huts","jobTitle":"AI Product Designer for Fintech & Web3","description":"AI product designer for fintech and Web3. 16 years in design. I design, build and grow products with AI, from UX research to launch, analytics and SEO.","url":"https://nadzeyahuts.github.io/","image":"https://nadzeyahuts.github.io/assets/me.webp","email":"mailto:nadzeyahuts@gmail.com","sameAs":["https://www.linkedin.com/in/nadzeya-huts/","https://github.com/nadzeyahuts","https://t.me/NadzeyaHu"],"knowsAbout":["Product Design","UX/UI Design","Design Systems","Fintech","Web3","RWA Tokenization","AI-assisted product development","Prototyping","Product Analytics","SEO"]},{"@type":"ProfilePage","@id":"https://nadzeyahuts.github.io/#profile","url":"https://nadzeyahuts.github.io/","name":"Nadzeya Huts | AI Product Designer for Fintech & Web3","mainEntity":{"@id":"https://nadzeyahuts.github.io/#person"},"isPartOf":{"@id":"https://nadzeyahuts.github.io/#website"}}]}</script><style>
+.social{display:flex;justify-content:center;gap:28px;padding:10px 0 24px}
+.social a{display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--muted);transition:color .2s ease;font-size:13px}
+.social a:hover{color:var(--ink)}
+.social .glyph{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);color:#fff;display:flex;align-items:center;justify-content:center;transition:background .2s ease}
+.social a:hover .glyph{background:rgba(255,255,255,.2)}
+.social .glyph svg{width:20px;height:20px;display:block}
+#toTop{position:fixed;right:clamp(18px,3vw,34px);bottom:clamp(18px,3vw,34px);z-index:60;width:52px;height:52px;border-radius:50%;border:1px solid var(--line-2);background:#1b1b20;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .25s,transform .25s,visibility .25s}
+#toTop.show{opacity:1;visibility:visible;transform:none}#toTop svg{width:22px;height:22px}
+</style></head>
+<body data-stars>
 <div class="ambient" aria-hidden="true"><i class="a1"></i><i class="a2"></i><span class="grain"></span></div>
 
 <header class="bar wrap">
@@ -256,19 +265,19 @@ html:not(.js) .reveal-s{opacity:1;transform:none}
 <main>
 <section class="hero wrap" id="top">
   <div class="copy">
-    <p class="kicker i-up" style="--k:0">AI Product Designer <span class="ss">⋆</span> Fintech &amp; Web3</p>
+    <p class="kicker i-up" style="--k:0">AI Product Designer&nbsp;<span class="ss">⋆</span>&nbsp;Fintech &amp; Web3</p>
     <h1 class="name" itemprop="name"><span class="ln"><span style="--k:0">Nadzeya</span></span> <span class="ln"><span style="--k:1">Huts.</span></span></h1>
     <p class="pos i-up" style="--k:2">I design complex financial products people trust — <em>and ship them with AI.</em></p>
     <ul class="proof i-up" style="--k:3">
       <li><b data-count="16">16</b><span>years in design</span></li>
       <li><b data-count="30" data-suffix="+">30+</b><span>products delivered</span></li>
-      <li class="hl"><b><i data-count="48" style="font-style:normal">48</i> h</b><span>instead of ~284 on three AI-built projects</span></li>
+      <li class="hl"><b><i data-count="48" style="font-style:normal">48</i> h</b><span>vs ~284&nbsp;h, three AI builds</span></li>
     </ul>
     <div class="cta i-up" style="--k:4">
       <a class="btn-p mag" href="#work">See selected work</a>
       <a class="btn-g mag" href="ai-lab.html">AI Lab</a>
     </div>
-    <p class="avail i-up" style="--k:5">Remote <span class="ss">⋆</span> open to full-time roles &amp; selected projects</p>
+    <p class="avail i-up" style="--k:5">Remote&nbsp;<span class="ss">⋆</span>&nbsp;open to full-time roles &amp; selected projects</p>
   </div>
 
   <div class="stage" id="stage">
@@ -276,10 +285,10 @@ html:not(.js) .reveal-s{opacity:1;transform:none}
     <div class="stack" id="stack">
       <a class="pane" href="sentinel.html" data-i="0" style="--i:0;--bx:-130;--by:160;--bz:20;--br:-2;--d:20" aria-label="Sentinel — retirement risk graph, AI-built in 20 hours"><div class="pi"><img style="aspect-ratio:1000/625" src="assets/stack-sn.webp" alt="Sentinel risk graph screen" decoding="async"><div class="tg"><div><b>Sentinel</b><span>AI-built in 20 h</span></div><i>Open</i></div></div></a>
       <a class="pane" href="together-fun.html" data-i="1" style="--i:1;--bx:150;--by:172;--bz:130;--br:2;--d:26" aria-label="Together.fun — deposit completion 86 percent"><div class="pi"><img style="aspect-ratio:1000/625" src="assets/stack-tf.webp" alt="Together.fun deposit screen" decoding="async"><div class="tg"><div><b>Together.fun</b><span>86% deposit completion</span></div><i>Open</i></div></div></a>
-      <a class="pane" href="tons.html" data-i="2" style="--i:2;--bx:140;--by:-180;--bz:-270;--br:3;--d:12" aria-label="TONS MONEY Capital — RWA tokenization"><div class="pi"><img style="aspect-ratio:1000/625" src="assets/stack-tons.webp" alt="TONS MONEY screen" decoding="async"><div class="tg"><div><b>TONS MONEY Capital</b><span>3 tokens <span class="ss">⋆</span> landing + app</span></div><i>Open</i></div></div></a>
-      <a class="pane" href="neobank.html" data-i="3" style="--i:3;--bx:-150;--by:-185;--bz:-340;--br:-4;--d:8" aria-label="NeoBank — crypto-fiat banking, three portals"><div class="pi"><img style="aspect-ratio:1000/625" src="assets/stack-nb.webp" alt="NeoBank cards screen" decoding="async"><div class="tg"><div><b>NeoBank</b><span>3 portals <span class="ss">⋆</span> Material Design 3</span></div><i>Open</i></div></div></a>
+      <a class="pane" href="tons.html" data-i="2" style="--i:2;--bx:140;--by:-180;--bz:-270;--br:3;--d:12" aria-label="TONS MONEY Capital — RWA tokenization"><div class="pi"><img style="aspect-ratio:1000/625" src="assets/stack-tons.webp" alt="TONS MONEY screen" decoding="async"><div class="tg"><div><b>TONS MONEY Capital</b><span>3 tokens&nbsp;<span class="ss">⋆</span>&nbsp;landing + app</span></div><i>Open</i></div></div></a>
+      <a class="pane" href="neobank.html" data-i="3" style="--i:3;--bx:-150;--by:-185;--bz:-340;--br:-4;--d:8" aria-label="NeoBank — crypto-fiat banking, three portals"><div class="pi"><img style="aspect-ratio:1000/625" src="assets/stack-nb.webp" alt="NeoBank cards screen" decoding="async"><div class="tg"><div><b>NeoBank</b><span>3 portals&nbsp;<span class="ss">⋆</span>&nbsp;Material Design 3</span></div><i>Open</i></div></div></a>
       <a class="pane" href="earthbyt.html" data-i="4" style="--i:4;--bx:-165;--by:-8;--bz:-170;--br:-3;--d:14" aria-label="EarthByt — carbon marketplace, AI-built in 20 hours"><div class="pi"><img style="aspect-ratio:1000/625" src="assets/stack-eb.webp" alt="EarthByt marketplace screen" decoding="async"><div class="tg"><div><b>EarthByt</b><span>AI-built in 20 h</span></div><i>Open</i></div></div></a>
-      <a class="pane" href="4ire.html" data-i="5" style="--i:5;--bx:150;--by:0;--bz:-90;--br:2;--d:16" aria-label="4IRE RWA Platform — six asset classes"><div class="pi"><img style="aspect-ratio:1000/625" src="assets/stack-ire.webp" alt="4IRE RWA marketplace screen" decoding="async"><div class="tg"><div><b>4IRE RWA</b><span>6 asset classes <span class="ss">⋆</span> dark + light</span></div><i>Open</i></div></div></a>
+      <a class="pane" href="4ire.html" data-i="5" style="--i:5;--bx:150;--by:0;--bz:-90;--br:2;--d:16" aria-label="4IRE RWA Platform — six asset classes"><div class="pi"><img style="aspect-ratio:1000/625" src="assets/stack-ire.webp" alt="4IRE RWA marketplace screen" decoding="async"><div class="tg"><div><b>4IRE RWA</b><span>6 asset classes&nbsp;<span class="ss">⋆</span>&nbsp;dark + light</span></div><i>Open</i></div></div></a>
     </div>
     <div class="rail" id="rail"><a class="chip" href="sentinel.html" data-i="0"><i class="sx" aria-hidden="true">✳</i>Sentinel</a><a class="chip" href="together-fun.html" data-i="1"><i class="sx" aria-hidden="true">✳</i>Together.fun</a><a class="chip" href="tons.html" data-i="2"><i class="sx" aria-hidden="true">✳</i>TONS</a><a class="chip" href="neobank.html" data-i="3"><i class="sx" aria-hidden="true">✳</i>NeoBank</a><a class="chip" href="earthbyt.html" data-i="4"><i class="sx" aria-hidden="true">✳</i>EarthByt</a><a class="chip" href="4ire.html" data-i="5"><i class="sx" aria-hidden="true">✳</i>4IRE</a></div>
   </div>
@@ -294,16 +303,16 @@ html:not(.js) .reveal-s{opacity:1;transform:none}
     <article class="row reveal-s" style="--k:0">
       <div class="rh" role="button" tabindex="0" aria-expanded="false" aria-controls="rb0">
       <div class="c1"><h3 class="t">Together.fun</h3><div class="meta"><span class="bd">Client work</span><span>2025–26</span></div></div>
-      <p class="tag c2" style="margin:0">Play-to-Earn <span class="ss">⋆</span> Game UX <span class="ss">⋆</span> Web3 <span class="ss">⋆</span> Fintech</p>
+      <p class="tag c2" style="margin:0">Play-to-Earn&nbsp;<span class="ss">⋆</span>&nbsp;Game UX&nbsp;<span class="ss">⋆</span>&nbsp;Web3&nbsp;<span class="ss">⋆</span>&nbsp;Fintech</p>
       <div class="res c3"><b>86%</b><span>deposit completion, up 15%</span></div>
       <div class="th"><img style="aspect-ratio:1000/625" src="assets/stack-tf.webp" alt="" loading="lazy" decoding="async"></div>
       </div><span class="chev" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10l4-4 4 4"/></svg></span>
-      <div class="rb" id="rb0"><div class="rbi"><div class="rbg"><div class="rbc"><ul class="kp"><li><b>86%</b><span>deposit completion, up 15%</span><i class="kb"><i style="--w:86%"></i></i></li><li><b>8 → 4</b><span>first-deposit steps</span><i class="kb g"><i style="--w:100%"></i></i><i class="kb"><i style="--w:50%"></i></i></li><li><b>47</b><span>screens, all 8 lifecycle states</span></li></ul><a class="bt solid" href="together-fun.html">Open case </a></div><div class="rbimg"><img style="aspect-ratio:1000/625" src="assets/stack-tf.webp" alt="Together.fun screens" loading="lazy" decoding="async"></div></div></div></div>
+      <div class="rb" id="rb0"><div class="rbi"><div class="rbg"><div class="rbc"><ul class="kp"><li><b>86%</b><span>deposit completion, up 15%</span></li><li><b>8 → 4</b><span>first-deposit steps</span></li><li><b>47</b><span>screens, all 8 lifecycle states</span></li></ul><a class="bt solid" href="together-fun.html">Open case </a></div><div class="rbimg"><img style="aspect-ratio:1000/625" src="assets/stack-tf.webp" alt="Together.fun screens" loading="lazy" decoding="async"></div></div></div></div>
     </article>
     <article class="row reveal-s" style="--k:1">
       <div class="rh" role="button" tabindex="0" aria-expanded="false" aria-controls="rb1">
       <div class="c1"><h3 class="t">4IRE RWA Platform</h3><div class="meta"><span class="bd">Client work</span><span>2026</span></div></div>
-      <p class="tag c2" style="margin:0">DAO Governance <span class="ss">⋆</span> RWA Tokenization <span class="ss">⋆</span> Reputation System</p>
+      <p class="tag c2" style="margin:0">DAO Governance&nbsp;<span class="ss">⋆</span>&nbsp;RWA Tokenization&nbsp;<span class="ss">⋆</span>&nbsp;Reputation System</p>
       <div class="res c3"><b>6</b><span>asset classes, dark and light themes</span></div>
       <div class="th"><img style="aspect-ratio:1000/625" src="assets/stack-ire.webp" alt="" loading="lazy" decoding="async"></div>
       </div><span class="chev" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10l4-4 4 4"/></svg></span>
@@ -312,7 +321,7 @@ html:not(.js) .reveal-s{opacity:1;transform:none}
     <article class="row reveal-s" style="--k:2">
       <div class="rh" role="button" tabindex="0" aria-expanded="false" aria-controls="rb2">
       <div class="c1"><h3 class="t">TONS MONEY Capital</h3><div class="meta"><span class="bd">Client work</span><span>2025</span></div></div>
-      <p class="tag c2" style="margin:0">RWA Tokenization <span class="ss">⋆</span> Investment <span class="ss">⋆</span> Design System</p>
+      <p class="tag c2" style="margin:0">RWA Tokenization&nbsp;<span class="ss">⋆</span>&nbsp;Investment&nbsp;<span class="ss">⋆</span>&nbsp;Design System</p>
       <div class="res c3"><b>3</b><span>tokens: USD8, sUSD8, Gram</span></div>
       <div class="th"><img style="aspect-ratio:1000/625" src="assets/stack-tons.webp" alt="" loading="lazy" decoding="async"></div>
       </div><span class="chev" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10l4-4 4 4"/></svg></span>
@@ -321,7 +330,7 @@ html:not(.js) .reveal-s{opacity:1;transform:none}
     <article class="row reveal-s" style="--k:3">
       <div class="rh" role="button" tabindex="0" aria-expanded="false" aria-controls="rb3">
       <div class="c1"><h3 class="t">NeoBank</h3><div class="meta"><span class="bd">Client work</span><span>2024–25</span></div></div>
-      <p class="tag c2" style="margin:0">Crypto-Fiat <span class="ss">⋆</span> Design System <span class="ss">⋆</span> Material Design 3</p>
+      <p class="tag c2" style="margin:0">Crypto-Fiat&nbsp;<span class="ss">⋆</span>&nbsp;Design System&nbsp;<span class="ss">⋆</span>&nbsp;Material Design 3</p>
       <div class="res c3"><b>3</b><span>portals on one design system</span></div>
       <div class="th"><img style="aspect-ratio:1000/625" src="assets/stack-nb.webp" alt="" loading="lazy" decoding="async"></div>
       </div><span class="chev" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10l4-4 4 4"/></svg></span>
@@ -333,7 +342,7 @@ html:not(.js) .reveal-s{opacity:1;transform:none}
 <section class="sec wrap" id="ai" style="padding-top:0">
   <div class="ai reveal-s" id="aiBand">
     <div>
-      <p class="kicker" style="margin-bottom:14px">AI Lab <span class="ss">⋆</span> measured</p>
+      <p class="kicker" style="margin-bottom:14px">AI Lab&nbsp;<span class="ss">⋆</span>&nbsp;measured</p>
       <h2><em><span data-count="48">48</span> h</em> instead of ~284.</h2>
       <p class="sub">Three builds, one designer, a team of AI agents. I set the goal and the criteria, AI produces, I review and decide.</p>
       <a class="opn" href="ai-lab.html">Open AI Lab</a>
@@ -369,7 +378,7 @@ html:not(.js) .reveal-s{opacity:1;transform:none}
 (function(){
   var btn=document.getElementById('toTop');
   if(!btn)return;
-  window.addEventListener('scroll',function(){btn.classList.toggle('show',window.scrollY>600);},{passive:true});
+  window.addEventListener('scroll',function(){btn.classList.toggle('show',window.scrollY>Math.min(600,innerHeight*.45));},{passive:true});
   btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});});
 })();
 </script>
@@ -463,7 +472,7 @@ html:not(.js) .reveal-s{opacity:1;transform:none}
     function setOpen(r,on){r.classList.toggle('open',on);r.querySelector('.rh').setAttribute('aria-expanded',on?'true':'false')}
     function openOnly(r){rows.forEach(function(x){setOpen(x,x===r)})}
     rows.forEach(function(r){
-      var h=r.querySelector('.rh'),th=r.querySelector('.th');
+      var h=r.querySelector('.rh'),th=r.querySelector('.th');var cv=r.querySelector('.chev');if(cv){cv.setAttribute('role','button');cv.removeAttribute('aria-hidden');cv.setAttribute('aria-label','Collapse');cv.style.cursor='pointer';cv.addEventListener('click',function(e){e.stopPropagation();touched=true;setOpen(r,false)})}
       h.addEventListener('click',function(){touched=true;if(r.classList.contains('open'))setOpen(r,false);else openOnly(r)});
       h.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();h.click()}});
       if(th)th.addEventListener('click',function(e){e.stopPropagation();touched=true;openOnly(r)});
@@ -474,5 +483,5 @@ html:not(.js) .reveal-s{opacity:1;transform:none}
     }
   })();
 </script>
-</body>
+<div class="m-foot" role="region" aria-label="Site footer"><div><span>© 2026 Nadzeya Huts<span class="ss">⋆</span>AI product designer for fintech and&nbsp;Web3</span><nav aria-label="Site links"><a href="index.html">Work</a><a href="about.html">About</a><a href="cv.html">CV</a><a href="privacy.html">Privacy</a></nav></div></div></body>
 </html>

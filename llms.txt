@@ -2,21 +2,21 @@
 
 > AI product designer for fintech and Web3. 16 years in design, 30+ products delivered. I design, build and grow digital products with AI, from UX research and prototypes to launch, analytics and SEO. Open to remote and part-time roles.
 
-Name: Nadzeya Huts. Site: https://nadzeyahuts-spec.github.io/. Contact: nadzeyahuts@gmail.com. Profiles: LinkedIn https://www.linkedin.com/in/nadzeya-huts/, GitHub https://github.com/nadzeyahuts-spec.
+Name: Nadzeya Huts. Site: https://nadzeyahuts.github.io/. Contact: nadzeyahuts@gmail.com. Profiles: LinkedIn https://www.linkedin.com/in/nadzeya-huts/, GitHub https://github.com/nadzeyahuts.
 
 ## Main pages
-- [Home](https://nadzeyahuts-spec.github.io/): positioning, selected work, results
-- [About](https://nadzeyahuts-spec.github.io/about.html): background, skills, how I work with AI
-- [AI Lab](https://nadzeyahuts-spec.github.io/ai-lab.html): AI-built prototypes and sites
-- [CV](https://nadzeyahuts-spec.github.io/cv.html): experience and skills
+- [Home](https://nadzeyahuts.github.io/): positioning, selected work, results
+- [About](https://nadzeyahuts.github.io/about.html): background, skills, how I work with AI
+- [AI Lab](https://nadzeyahuts.github.io/ai-lab.html): AI-built prototypes and sites
+- [CV](https://nadzeyahuts.github.io/cv.html): experience and skills
 
 ## Case studies
-- [RNDpoint and ABLE Platform: website audit and page system](https://nadzeyahuts-spec.github.io/rnd-able.html)
-- [Sentinel: AI-built retirement platform](https://nadzeyahuts-spec.github.io/sentinel.html)
-- [EarthByt: AI-built carbon marketplace](https://nadzeyahuts-spec.github.io/earthbyt.html)
-- [NOVA: AI-built crypto mini-games](https://nadzeyahuts-spec.github.io/nova.html)
-- [4IRE Labs website redesign](https://nadzeyahuts-spec.github.io/4ire-web.html)
-- [Together.fun: Solana Play-to-Earn game](https://nadzeyahuts-spec.github.io/together-fun.html)
-- [4IRE RWA tokenization platform](https://nadzeyahuts-spec.github.io/4ire.html)
-- [TONS MONEY: RWA investment platform](https://nadzeyahuts-spec.github.io/tons.html)
-- [NeoBankX: crypto-fiat banking](https://nadzeyahuts-spec.github.io/neobank.html)
+- [RNDpoint and ABLE Platform: website audit and page system](https://nadzeyahuts.github.io/rnd-able.html)
+- [Sentinel: AI-built retirement platform](https://nadzeyahuts.github.io/sentinel.html)
+- [EarthByt: AI-built carbon marketplace](https://nadzeyahuts.github.io/earthbyt.html)
+- [NOVA: AI-built crypto mini-games](https://nadzeyahuts.github.io/nova.html)
+- [4IRE Labs website redesign](https://nadzeyahuts.github.io/4ire-web.html)
+- [Together.fun: Solana Play-to-Earn game](https://nadzeyahuts.github.io/together-fun.html)
+- [4IRE RWA tokenization platform](https://nadzeyahuts.github.io/4ire.html)
+- [TONS MONEY: RWA investment platform](https://nadzeyahuts.github.io/tons.html)
+- [NeoBankX: crypto-fiat banking](https://nadzeyahuts.github.io/neobank.html)

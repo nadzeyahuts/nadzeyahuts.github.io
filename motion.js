@@ -269,5 +269,39 @@
       img.style.cursor = 'zoom-in';
       img.addEventListener('click', function () { openLB(img.currentSrc || img.src); });
     });
+
+    /* ---------- 11. star field with scroll parallax (pages that ask for it with data-stars) ---------- */
+    if (d.body.hasAttribute('data-stars') && !d.getElementById('stars') && !d.querySelector('.m-stars')) {
+      var sky = d.createElement('div'); sky.className = 'm-stars'; sky.setAttribute('aria-hidden', 'true');
+      var layers = [{ n: 46, s: [1, 1.6], k: 0.035 }, { n: 26, s: [1.6, 2.2], k: 0.075 }, { n: 12, s: [2.2, 3], k: 0.13 }];
+      var small = innerWidth < 700, seed = 7, rnd = function () { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
+      var items = [];
+      layers.forEach(function (L) {
+        var n = small ? Math.round(L.n * 0.6) : L.n;
+        for (var i = 0; i < n; i++) {
+          var e = d.createElement('i'), sz = L.s[0] + rnd() * (L.s[1] - L.s[0]), o1 = (0.18 + rnd() * 0.3).toFixed(2), o2 = (0.45 + rnd() * 0.4).toFixed(2);
+          e.style.cssText = 'left:' + (rnd() * 100).toFixed(2) + '%;top:' + (rnd() * 112 - 6).toFixed(2) + '%;width:' + sz.toFixed(1) + 'px;height:' + sz.toFixed(1) + 'px;opacity:' + o1 + ';--o1:' + o1 + ';--o2:' + o2;
+          if (rnd() < 0.35) { e.className = 'twk'; e.style.animationDelay = (rnd() * 5).toFixed(1) + 's'; }
+          sky.appendChild(e); items.push({ e: e, k: L.k });
+        }
+      });
+      d.body.insertBefore(sky, d.body.firstChild);
+      if (!reduced) {
+        var st = false;
+        var shift = function () { if (st) return; st = true; requestAnimationFrame(function () { st = false; var y = scrollY; items.forEach(function (it) { it.e.style.transform = 'translate3d(0,' + (-y * it.k).toFixed(1) + 'px,0)'; }); }); };
+        addEventListener('scroll', shift, { passive: true }); shift();
+      }
+    }
+
+    /* ---------- 12. back to top after the first screen, on every page ---------- */
+    if (!d.getElementById('toTop')) {
+      var up = d.createElement('button'); up.id = 'toTop'; up.type = 'button'; up.setAttribute('aria-label', 'Back to top'); up.title = 'Back to top';
+      up.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg>';
+      up.style.cssText = 'position:fixed;right:clamp(18px,3vw,34px);bottom:clamp(18px,3vw,34px);z-index:60;width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:#1b1b20;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .25s,transform .25s,visibility .25s';
+      d.body.appendChild(up);
+      var tt = function () { var on = scrollY > innerHeight * 0.45; up.style.opacity = on ? 1 : 0; up.style.visibility = on ? 'visible' : 'hidden'; up.style.transform = on ? 'none' : 'translateY(12px)'; };
+      addEventListener('scroll', tt, { passive: true }); tt();
+      up.addEventListener('click', function () { scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' }); });
+    }
   } catch (err) { if (window.console) console.warn('motion.js', err); }
 })();
