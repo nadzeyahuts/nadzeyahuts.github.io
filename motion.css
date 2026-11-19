@@ -1,0 +1,95 @@
+/* Motion system, Nadzeya Huts portfolio. One file for every page.
+   Principles: movement explains structure (what comes first, what belongs together),
+   never decorates. Easing: expo-out for entrances, ease-in-out for scroll, 200 ms for feedback.
+   Everything is switched off under prefers-reduced-motion. */
+@property --ga{syntax:"<number>";inherits:true;initial-value:0}
+:root{--m-ease:cubic-bezier(.16,1,.3,1);--m-ease-io:cubic-bezier(.65,0,.35,1)}
+
+/* 1. Scroll progress */
+.m-prog{position:fixed;left:0;top:0;right:0;height:2px;z-index:9999;pointer-events:none;background:transparent}
+.m-prog i{display:block;height:100%;width:100%;background:#f2f2f4;transform:scaleX(0);transform-origin:left;opacity:.85}
+
+/* 2. Page transitions (cross-document View Transitions + fallback) */
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:m-out .28s var(--m-ease-io) both}
+::view-transition-new(root){animation:m-in .55s var(--m-ease) both}
+@keyframes m-out{to{opacity:0;transform:translateY(-10px)}}
+@keyframes m-in{from{opacity:0;transform:translateY(14px)}}
+html.m-on body{animation:m-body .6s var(--m-ease) both}
+@keyframes m-body{from{opacity:0}}
+html.m-leave body{opacity:0;transition:opacity .26s var(--m-ease-io)}
+
+/* 3. Reveal on scroll (applied only to elements the page does not already animate) */
+html.m-on .m-r{opacity:0;transform:translateY(24px);transition:opacity .8s var(--m-ease),transform .9s var(--m-ease);transition-delay:var(--md,0s)}
+html.m-on .m-r.m-in{opacity:1;transform:none}
+
+/* 4. Images: focus-pull reveal, then slow parallax drift (translate/scale are separate properties,
+      so they never clash with hover transforms) */
+html.m-on img.m-ri{opacity:0;filter:blur(12px);transition:opacity .9s var(--m-ease),filter 1.1s var(--m-ease)}
+html.m-on img.m-ri.m-in{opacity:1;filter:none}
+img.m-par{scale:1.1;will-change:translate}
+
+/* 5. Result bars and chart lines draw themselves */
+html.m-on .m-bar{transform:scaleX(0);transform-origin:left;transition:transform 1.3s var(--m-ease);transition-delay:var(--md,0s)}
+html.m-on .m-bar.m-in{transform:none}
+html.m-on .m-line{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2s var(--m-ease-io)}
+html.m-on .m-line.m-in{stroke-dashoffset:0}
+
+/* 6. Preview hover: tilt follows the cursor, light follows too */
+.m-tilt{position:relative;transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .5s var(--m-ease);will-change:transform}
+.m-tilt.m-hot{transition:transform .08s linear}
+.m-tilt::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;opacity:0;transition:opacity .35s;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.14),transparent 60%)}
+.m-tilt.m-hot::after{opacity:1}
+img.m-tilt{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))}
+img.m-tilt::after{display:none}
+
+/* 7. Cards: lift and glow on hover */
+.pc,.row,.acc{transition:transform .5s var(--m-ease),background .25s,border-color .25s}
+@media (hover:hover){.pc:hover{transform:translateY(-5px)}}
+.m-glow{--ga:0;transition:--ga .4s,background-color .25s,border-color .25s;background-image:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(255,255,255,var(--ga)),transparent 60%)}
+.m-glow:hover{--ga:.05}
+
+/* 8. Micro-interactions */
+.bt,.btn,.btn-g,.opn,.bt.solid{transition:transform .25s var(--m-ease),background .25s,border-color .25s,color .25s}
+.bt:active,.btn:active,.btn-g:active,.opn:active{transform:scale(.96)}
+p a:not(.bt):not(.btn){text-decoration:underline;text-decoration-color:rgba(255,255,255,.35);text-underline-offset:3px;transition:text-decoration-color .25s}
+p a:not(.bt):not(.btn):hover{text-decoration-color:#fff}
+a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:10px}
+.nav a.m-act,.topbar a.m-act{color:#fff}
+
+/* 9. Next project strip: moves you from case to case */
+.m-next{display:block;margin:clamp(40px,8vh,90px) auto 0;max-width:1180px;padding:0 clamp(16px,4vw,32px) clamp(40px,8vh,80px)}
+.m-next a{display:grid;grid-template-columns:minmax(0,1fr) clamp(180px,26vw,340px);gap:clamp(18px,3vw,40px);align-items:center;padding:clamp(20px,3vw,34px);border:1px solid rgba(255,255,255,.14);border-radius:28px;background:rgba(255,255,255,.02);color:inherit;text-decoration:none;transition:background .3s,border-color .3s,transform .6s var(--m-ease)}
+.m-next a:hover{background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.28);transform:translateY(-4px)}
+.m-next small{display:block;font-size:13px;color:#8d8e98;margin-bottom:10px}
+.m-next b{display:block;font-weight:500;font-size:clamp(28px,4.6vw,56px);letter-spacing:-.03em;line-height:1.05}
+.m-next em{display:block;font-style:normal;margin-top:12px;font-size:14px;color:#a9aab3}
+.m-next .mi{border-radius:16px;overflow:hidden;aspect-ratio:1.6;border:1px solid rgba(255,255,255,.12);background:#101014}
+.m-next .mi img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1s var(--m-ease)}
+.m-next a:hover .mi img{transform:scale(1.07)}
+@media(max-width:620px){.m-next a{grid-template-columns:1fr}}
+
+@media (prefers-reduced-motion:reduce){
+  html.m-on body{animation:none}
+  .m-r,.m-ri,.m-bar,.m-line{opacity:1!important;transform:none!important;filter:none!important;stroke-dashoffset:0!important;transition:none!important}
+  img.m-par{scale:1;translate:none!important}
+  .m-tilt{transform:none!important}
+  ::view-transition-old(root),::view-transition-new(root){animation:none}
+}
+@media print{.m-r,.m-ri,.m-bar{opacity:1!important;transform:none!important;filter:none!important}.m-prog,.m-next{display:none}}
+
+/* parity layer: same look as the case pages */
+.nav.scrolled{background:#121115}
+#lightbox{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.88);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:4vw;cursor:zoom-out}
+#lightbox.open{display:flex;animation:m-lb .35s var(--m-ease)}
+#lightbox img{max-width:100%;max-height:92vh;border-radius:12px;box-shadow:0 40px 100px rgba(0,0,0,.7)}
+@keyframes m-lb{from{opacity:0}}
+#rail{position:fixed;right:clamp(12px,1.6vw,22px);top:50%;transform:translateY(-50%);z-index:55;display:flex;flex-direction:column;gap:2px;padding:10px 8px}
+#rail a{position:relative;display:flex;align-items:center;justify-content:flex-end;gap:12px;height:26px;text-decoration:none;cursor:pointer}
+#rail .rd{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.14);transition:background .25s,transform .25s;flex:0 0 auto}
+#rail a:hover .rd{background:#b7b8c0}#rail a.active .rd{background:#fff;transform:scale(1.4)}
+#rail .rl{font-size:12.5px;color:#b7b8c0;white-space:nowrap;opacity:0;transform:translateX(8px);pointer-events:none;transition:opacity .25s,transform .25s;background:#1b1b20;border:1px solid rgba(255,255,255,.07);padding:5px 11px;border-radius:12px}
+#rail:hover .rl,#rail a.active .rl{opacity:1;transform:none}#rail a.active .rl{color:#fff}
+@media(max-width:1180px){#rail{display:none}}
+@media print{#rail{display:none}}
+
