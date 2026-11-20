@@ -174,13 +174,16 @@
   .nb-rwa-m { flex:0 0 auto; display:flex; flex-direction:column; align-items:center; }
   .nb-rwa-m .ovr-frame { position:relative; width:170px; }
   .nb-rwa-m .ovr-scroll { width:170px; height:380px; border-radius:20px; overflow-y:auto; overflow-x:hidden; border:1px solid var(--line); -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+  .nb-static .nb-rwa-shots{align-items:flex-end}
+  .nb-static .nb-rwa-m .ovr-frame{width:230px}
+  .nb-static .nb-rwa-m .ovr-scroll{width:230px;height:auto;overflow:hidden;border-radius:22px}
   .nb-rwa-m .ovr-scroll::-webkit-scrollbar { display:none; }
   .nb-rwa-m .ovr-scroll img { width:100%; height:auto; display:block; }
   .nb-ovr-hint { position:absolute; left:50%; bottom:10px; transform:translateX(-50%); font-size:11px; color:#fff; background:rgba(0,0,0,.55); padding:5px 11px; border-radius:20px; pointer-events:none; transition:opacity .3s; backdrop-filter:blur(4px); white-space:nowrap; }
   .nb-rwa-m .ovr-scroll:hover ~ .nb-ovr-hint { opacity:0; }
   /* mobile-only contact panel */
   .fpanel.nb-mob-only.active { display:flex; justify-content:center; gap:clamp(20px,3vw,36px); flex-wrap:wrap; align-items:flex-start; }
-  @media (max-width:780px){ .nb-rwa-shots { flex-direction:column; } .nb-rwa-m .ovr-frame,.nb-rwa-m .ovr-scroll { width:100%; max-width:280px; height:420px; } }
+  @media (max-width:780px){ .nb-static .nb-rwa-shots{align-items:center} .nb-static .nb-rwa-m .ovr-frame,.nb-static .nb-rwa-m .ovr-scroll{max-width:230px;height:auto} .nb-rwa-shots { flex-direction:column; } .nb-rwa-m .ovr-frame,.nb-rwa-m .ovr-scroll { width:100%; max-width:280px; height:420px; } }
 </style>
 <style>.ss{font-size:1.35em;line-height:0;vertical-align:-.06em;display:inline-block;margin:0 .05em}</style><link rel="stylesheet" href="motion.css"><script src="motion.js" defer></script><meta name="theme-color" content="#121115"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CreativeWork","name":"NeoBankX: Crypto-Fiat Banking","description":"NeoBankX case study: a crypto-fiat bridge across mobile app, web portal and admin portal, built on Material Design 3.","url":"https://nadzeyahuts.github.io/neobank.html","image":"https://nadzeyahuts.github.io/assets/neobank-cards.webp","inLanguage":"en","author":{"@id":"https://nadzeyahuts.github.io/#person","@type":"Person","name":"Nadzeya Huts"},"creator":{"@id":"https://nadzeyahuts.github.io/#person"},"isPartOf":{"@id":"https://nadzeyahuts.github.io/#website"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://nadzeyahuts.github.io/"},{"@type":"ListItem","position":2,"name":"Work","item":"https://nadzeyahuts.github.io/#work"},{"@type":"ListItem","position":3,"name":"NeoBank","item":"https://nadzeyahuts.github.io/neobank.html"}]}]}</script></head>
 <body>
@@ -390,13 +393,17 @@
           </div>
 
           <!-- Contact: mobile-only scrollable -->
-          <div class="fpanel nb-mob-only" data-panel="nb-contact">
-            <div class="nb-rwa-m">
-              <div class="ovr-frame" style="width:220px">
-                <div class="ovr-scroll" tabindex="0" style="width:220px;height:460px">
-                  <img style="aspect-ratio:1183/2560" src="assets/nb/nb-contacts-m.webp" alt="Contacts — mobile view, add platform friend or bank recipient" loading="lazy">
+          <div class="fpanel nb-rwa nb-static" data-panel="nb-contact">
+            <div class="nb-rwa-shots">
+              <div class="fshot-wrap">
+                <img style="aspect-ratio:1920/1200" class="fshot" src="assets/nb/nb-contacts.webp" alt="Contacts in the web app — Add New Contact dialog with contact type, recipient and bank details" loading="lazy">
+              </div>
+              <div class="nb-rwa-m">
+                <div class="ovr-frame">
+                  <div class="ovr-scroll">
+                    <img style="aspect-ratio:1183/2560" src="assets/nb/nb-contacts-m.webp" alt="Contacts — mobile view, add platform friend or bank recipient" loading="lazy">
+                  </div>
                 </div>
-                <span class="nb-ovr-hint">↕ scroll</span>
               </div>
             </div>
             <div class="finfo">
@@ -429,17 +436,17 @@
         <div class="fpanels">
 
           <!-- Verified: wide KYC screen + security mobile scroll -->
-          <div class="fpanel nb-rwa active" data-panel="nb-kyc">
+          <div class="fpanel nb-rwa nb-static active" data-panel="nb-kyc">
             <div class="nb-rwa-shots">
               <div class="fshot-wrap">
                 <img style="aspect-ratio:1920/1789" class="fshot" src="assets/nb/nb-kyc.webp" alt="User Details Verification — KYC status, documents and PEP/HIO flags in admin portal" loading="lazy">
               </div>
               <div class="nb-rwa-m">
                 <div class="ovr-frame">
-                  <div class="ovr-scroll" tabindex="0">
+                  <div class="ovr-scroll">
                     <img style="aspect-ratio:1183/2560" src="assets/nb/nb-security-m.webp" alt="Security tab — mobile user info" loading="lazy">
                   </div>
-                  <span class="nb-ovr-hint">↕ scroll</span>
+                  
                 </div>
               </div>
             </div>
@@ -471,15 +478,12 @@
   <section class="s tight" data-screen-label="05 Customizable modules">
     <div class="wrap">
       <div class="nb-band reveal">
-        <h2>Add <em>customizable modules</em> for your specific financial needs.</h2>
-        <p>The platform is modular by design. For instance, you can add Apple&nbsp;Pay and Google&nbsp;Pay to process fiat, crypto and stablecoins — or switch whole capabilities on and off per institution.</p>
+        <h2>One design system, <em>switchable modules</em></h2>
+        <p>I designed the product as a set of modules on a shared component library, so each institution can switch capabilities on or off without new screens. Payment methods, asset types and transfer rails below are examples of such modules.</p>
         <div class="nb-pays">
-          <span class="nb-chip">Apple Pay</span>
-          <span class="nb-chip">Google Pay</span>
-          <span class="nb-chip">Fiat</span>
-          <span class="nb-chip">Crypto</span>
-          <span class="nb-chip">Stablecoins</span>
-          <span class="nb-chip">SWIFT / SEPA</span>
+          <span class="nb-chip">Payments: Apple Pay, Google Pay</span>
+          <span class="nb-chip">Assets: fiat, crypto, stablecoins</span>
+          <span class="nb-chip">Transfers: SWIFT / SEPA</span>
         </div>
       </div>
     </div>

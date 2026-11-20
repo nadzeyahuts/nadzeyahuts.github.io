@@ -70,7 +70,7 @@ transition: border-color .25s ease, transform .25s ease, background .25s ease;
 a:hover{color:var(--ink)}
 .topbar a{color:var(--muted);font-size:14px;display:inline-flex;gap:9px}.topbar a:hover{color:var(--ink)}
 .bio{margin-top:clamp(24px,3.4vw,40px);display:flex;flex-direction:column;gap:14px;max-width:56ch}
-.bio p{margin:0;color:var(--muted-2);font-size:clamp(15px,1.5vw,17px);line-height:1.7;text-wrap:pretty}
+.bio p{margin:0;color:var(--muted-2);font-size:clamp(14px,1.2vw,15.5px);line-height:1.7;text-wrap:pretty}
 .bio p b{color:var(--ink);font-weight:500}
 .home>*{min-width:0}#globe{width:100%;height:100%}.globe-wrap{position:relative;width:150%;aspect-ratio:1/1;max-width:none;margin:0}@media(max-width:940px){.globe-wrap{width:100%;max-width:500px;margin:0 auto}}
 #globe{position:absolute;inset:0;cursor:grab}
@@ -78,7 +78,7 @@ a:hover{color:var(--ink)}
 .ghint{position:absolute;left:0;right:0;bottom:-6px;text-align:center;font-size:12.5px;color:var(--faint)}
 #tip{position:fixed;z-index:50;pointer-events:none;width:360px;max-height:calc(100vh - 24px);display:flex;flex-direction:column;gap:8px;opacity:0;transform:translateY(6px);transition:opacity .18s,transform .18s}
 #tip.on{opacity:1;transform:none;pointer-events:auto}#tip .stack{display:flex;flex-direction:column;gap:8px;overflow-y:auto;max-height:calc(100vh - 70px);scrollbar-width:thin;padding-right:2px}
-#tip .cty{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--green);padding:2px 4px}#tip .cty:before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+#tip .cty{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;justify-content:flex-end;text-align:right;color:var(--green);padding:2px 4px}#tip .cty:before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
 a.mini{color:inherit}a.mini:hover{border-color:rgba(20,241,149,.45)}.mini .ph{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-style:normal;font-size:14px;font-weight:600;color:#fff;background:linear-gradient(135deg,hsl(var(--h) 45% 30%),hsl(var(--h) 40% 16%));border:1px solid rgba(255,255,255,.1)}.mini{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:14px;align-items:center;width:auto;padding:12px 14px;border-radius:12px;border:1px solid var(--line-2);background:rgba(22,22,27,.94);backdrop-filter:blur(8px);box-shadow:0 20px 50px -20px rgba(0,0,0,.9)}
 .mini img{width:44px;height:44px;border-radius:12px;object-fit:cover;display:block}
 .mini h4{font-size:15px;font-weight:500;letter-spacing:-.01em;line-height:1.25}
