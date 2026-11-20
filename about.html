@@ -78,7 +78,7 @@ a:hover{color:var(--ink)}
 .ghint{position:absolute;left:0;right:0;bottom:-6px;text-align:center;font-size:12.5px;color:var(--faint)}
 #tip{position:fixed;z-index:50;pointer-events:none;width:360px;max-height:calc(100vh - 24px);display:flex;flex-direction:column;gap:8px;opacity:0;transform:translateY(6px);transition:opacity .18s,transform .18s}
 #tip.on{opacity:1;transform:none;pointer-events:auto}#tip .stack{display:flex;flex-direction:column;gap:8px;overflow-y:auto;max-height:calc(100vh - 70px);scrollbar-width:thin;padding-right:2px}
-#tip .cty{font-size:11.5px;text-transform:none;color:var(--green);padding-left:4px}
+#tip .cty{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--green);padding:2px 4px}#tip .cty:before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
 a.mini{color:inherit}a.mini:hover{border-color:rgba(20,241,149,.45)}.mini .ph{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-style:normal;font-size:14px;font-weight:600;color:#fff;background:linear-gradient(135deg,hsl(var(--h) 45% 30%),hsl(var(--h) 40% 16%));border:1px solid rgba(255,255,255,.1)}.mini{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:14px;align-items:center;width:auto;padding:12px 14px;border-radius:12px;border:1px solid var(--line-2);background:rgba(22,22,27,.94);backdrop-filter:blur(8px);box-shadow:0 20px 50px -20px rgba(0,0,0,.9)}
 .mini img{width:44px;height:44px;border-radius:12px;object-fit:cover;display:block}
 .mini h4{font-size:15px;font-weight:500;letter-spacing:-.01em;line-height:1.25}
@@ -104,6 +104,7 @@ a.mini{color:inherit}a.mini:hover{border-color:rgba(20,241,149,.45)}.mini .ph{wi
 <p>I work end to end — research, flows, UI and design systems — and I build too. With Claude, Figma AI and a team of AI agents I turn ideas into <b>working prototypes, websites and apps in hours</b>, then grow them with analytics and SEO.</p>
 <p>I know how these products are built from both sides: the user part (web and app) and the business part (admin panels) of crypto wallets, neobanks and RWA tokenization platforms. I’m also hands-on with the site side of growth — WordPress and SiteGround admin, Google Search Console and Google Tag Manager — so I can find why a site or app isn’t bringing clients, and fix it.</p>
 <p>I work remotely with product teams, founders and engineers across the US, Europe and beyond. Open to full-time roles and selected projects.</p>
+<p>Away from the screen: piano, running and the gym, and a lot of books.</p>
 </div>
 <div class="stats reveal">
 <div class="stat"><div class="big">16</div><div class="cap">years in design</div></div>
@@ -187,18 +188,38 @@ const globe=new THREE.Group();scene.add(globe);
 const r=1.6;
 globe.add(new THREE.Mesh(new THREE.SphereGeometry(r*.995,64,64),new THREE.MeshBasicMaterial({color:0x131318})));
 // atmosphere
-const atm=new THREE.Mesh(new THREE.SphereGeometry(r*1.12,64,64),new THREE.ShaderMaterial({transparent:true,side:THREE.BackSide,depthWrite:false,uniforms:{},vertexShader:'varying vec3 n;void main(){n=normalize(normalMatrix*normal);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',fragmentShader:'varying vec3 n;void main(){float i=pow(.72-dot(n,vec3(0,0,1.)),3.);gl_FragColor=vec4(.08,.95,.58,1.)*i*.55;}'}));
+const atm=new THREE.Mesh(new THREE.SphereGeometry(r*1.18,96,96),new THREE.ShaderMaterial({transparent:true,side:THREE.BackSide,depthWrite:false,uniforms:{},vertexShader:'varying vec3 n;void main(){n=normalize(normalMatrix*normal);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',fragmentShader:'varying vec3 n;void main(){float t=clamp(abs(dot(n,vec3(0,0,1.)))/.53,0.,1.);float i=smoothstep(0.,1.,t);i=i*i*i;gl_FragColor=vec4(.08,.95,.58,i*.36);}'}));
 scene.add(atm);
 const v3=(lat,lon,rr=r)=>{const p=(90-lat)*Math.PI/180,t=(lon+180)*Math.PI/180;return new THREE.Vector3(-rr*Math.sin(p)*Math.cos(t),rr*Math.cos(p),rr*Math.sin(p)*Math.sin(t));};
 // graticule
 const gm=new THREE.LineBasicMaterial({color:0xffffff,transparent:true,opacity:.04});
 for(let la=-60;la<=60;la+=30){const pts=[];for(let lo=-180;lo<=180;lo+=4)pts.push(v3(la,lo,r*1.001));globe.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),gm));}
+const ALIAS={'USA':'United States of America','UAE':'United Arab Emirates'};
+const TW=2048,TH=1024,lx=lo=>(lo+180)/360*TW,ly=la=>(90-la)/180*TH;
+const mk=()=>{const c=document.createElement('canvas');c.width=TW;c.height=TH;return c;};
+const landC=mk(),hlC=mk();
+const landTex=new THREE.CanvasTexture(landC),hlTex=new THREE.CanvasTexture(hlC);
+[landTex,hlTex].forEach(t=>{t.anisotropy=8;t.colorSpace=THREE.SRGBColorSpace;});
+const land=new THREE.Mesh(new THREE.SphereGeometry(r*1.001,96,96),new THREE.MeshBasicMaterial({map:landTex,transparent:true,depthWrite:false}));globe.add(land);
+const hlMesh=new THREE.Mesh(new THREE.SphereGeometry(r*1.003,96,96),new THREE.MeshBasicMaterial({map:hlTex,transparent:true,depthWrite:false}));globe.add(hlMesh);
+let FEATS=[];const polyPath=(x,g)=>{(g.type==='Polygon'?[g.coordinates]:g.coordinates).forEach(poly=>poly.forEach(ring=>{ring.forEach((p,i)=>i?x.lineTo(lx(p[0]),ly(p[1])):x.moveTo(lx(p[0]),ly(p[1])));x.closePath();}));};
+const drawLand=()=>{const x=landC.getContext('2d');x.clearRect(0,0,TW,TH);
+ x.lineJoin='round';
+ const all=new Path2D();const P={beginPath(){},moveTo:(a,b)=>all.moveTo(a,b),lineTo:(a,b)=>all.lineTo(a,b),closePath:()=>all.closePath()};
+ FEATS.forEach(f=>f.geometry&&polyPath(P,f.geometry));
+ x.fillStyle='rgba(255,255,255,.01)';x.fill(all,'evenodd');
+ x.strokeStyle='rgba(183,184,192,.19)';x.lineWidth=1;x.stroke(all);
+ landTex.needsUpdate=true;};
+let hlName=null;
+const setHL=(name)=>{if(name===hlName)return;hlName=name;const x=hlC.getContext('2d');x.clearRect(0,0,TW,TH);
+ if(name){const f=FEATS.find(f=>f.properties.name===(ALIAS[name]||name));
+  if(f&&f.geometry){const p=new Path2D();const P={moveTo:(a,b)=>p.moveTo(a,b),lineTo:(a,b)=>p.lineTo(a,b),closePath:()=>p.closePath()};polyPath(P,f.geometry);
+   x.fillStyle='rgba(20,241,149,.2)';x.fill(p,'evenodd');x.save();x.shadowColor='rgba(20,241,149,.9)';x.shadowBlur=14;x.strokeStyle='#14f195';x.lineWidth=3;x.lineJoin='round';x.stroke(p);x.restore();x.strokeStyle='#eafff6';x.lineWidth=1;x.stroke(p);}
+  else{const pl=PLACES.find(q=>q[0]===name);if(pl){const X=lx(pl[2]),Y=ly(pl[1]);x.strokeStyle='#14f195';x.lineWidth=3;x.shadowColor='rgba(20,241,149,.9)';x.shadowBlur=12;x.beginPath();x.arc(X,Y,16,0,7);x.stroke();}}}
+ hlTex.needsUpdate=true;};
+window.__hl=setHL;
 fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(x=>x.json()).then(topo=>{
- const fc=feature(topo,topo.objects.countries);const pos=[];
- const ring=c=>{for(let i=0;i<c.length-1;i++){const a=v3(c[i][1],c[i][0],r*1.002),b=v3(c[i+1][1],c[i+1][0],r*1.002);pos.push(a.x,a.y,a.z,b.x,b.y,b.z);}};
- fc.features.forEach(f=>{const g=f.geometry;if(!g)return;(g.type==='Polygon'?[g.coordinates]:g.coordinates).forEach(poly=>poly.forEach(ring));});
- const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));
- globe.add(new THREE.LineSegments(geo,new THREE.LineBasicMaterial({color:0xb7b8c0,transparent:true,opacity:.2})));
+ FEATS=feature(topo,topo.objects.countries).features;drawLand();
 }).catch(()=>{});
 // points
 const dotTex=(()=>{const c=document.createElement('canvas');c.width=c.height=64;const x=c.getContext('2d');const g=x.createRadialGradient(32,32,0,32,32,32);g.addColorStop(0,'rgba(255,255,255,1)');g.addColorStop(.18,'rgba(20,241,149,1)');g.addColorStop(.45,'rgba(20,241,149,.35)');g.addColorStop(1,'rgba(20,241,149,0)');x.fillStyle=g;x.fillRect(0,0,64,64);return new THREE.CanvasTexture(c);})();
@@ -209,12 +230,12 @@ const size=()=>{const w=wrap.clientWidth;renderer.setSize(w,w,false);cam.aspect=
 const tip=document.getElementById('tip'),ray=new THREE.Raycaster(),m=new THREE.Vector2();let cur=-1;
 const mono=n=>{let h=0;for(const ch of n)h=(h*31+ch.charCodeAt(0))%360;return '<i class="ph" style="--h:'+h+'">'+n.replace(/[^A-Za-z0-9]/g,' ').trim().split(/\s+/).slice(0,2).map(w=>w[0]).join('').toUpperCase()+'</i>';};
 const card=p=>'<div class="cty">'+p[0]+'</div><div class="stack">'+p[3].map(c=>{const t=c[4]?'a':'div';const ext=/^http/.test(c[4])?' target="_blank" rel="noopener"':'';return '<'+t+' class="mini"'+(c[4]?' href="'+c[4]+'"'+ext:'')+'>'+(c[0]?'<img src="'+c[0]+'" alt="">':mono(c[1]))+'<div><h4>'+c[1]+'</h4><p>'+c[2]+'</p></div><span>'+c[3]+'</span></'+t+'>';}).join('')+'</div>';
-let hideT=0;const hide=()=>{tip.classList.remove('on');cur=-1;ctr.autoRotate=!matchMedia('(prefers-reduced-motion: reduce)').matches;cv.style.cursor='';};
+let hideT=0;const hide=()=>{tip.classList.remove('on');cur=-1;setHL(null);ctr.autoRotate=!matchMedia('(prefers-reduced-motion: reduce)').matches;cv.style.cursor='';};
 tip.addEventListener('pointerenter',()=>clearTimeout(hideT));tip.addEventListener('pointerleave',()=>{hideT=setTimeout(hide,250);});
-const showTip=(e,isTouch)=>{const b=cv.getBoundingClientRect();const cx=isTouch?e.touches[0].clientX:e.clientX;const cy=isTouch?e.touches[0].clientY:e.clientY;m.x=(cx-b.left)/b.width*2-1;m.y=-(cy-b.top)/b.height*2+1;ray.setFromCamera(m,cam);const camDir=cam.position.clone().normalize();const hit=ray.intersectObjects(hits).find(h=>h.object.getWorldPosition(new THREE.Vector3()).normalize().dot(camDir)>.15);if(hit){clearTimeout(hideT);const i=hit.object.userData.i;if(i!==cur){cur=i;tip.innerHTML=card(PLACES[i]);const w=Math.min(320,innerWidth-24);tip.style.maxWidth=w+'px';requestAnimationFrame(()=>{const th=tip.offsetHeight||160;let x=cx-w-14;if(x<8)x=cx+16;x=Math.min(x,innerWidth-w-8);tip.style.left=x+'px';tip.style.top=Math.max(8,Math.min(cy-30,innerHeight-th-10))+'px';});}tip.classList.add('on');ctr.autoRotate=false;cv.style.cursor='pointer';return true;}else{clearTimeout(hideT);hideT=setTimeout(hide,250);return false;}};
+const showTip=(e,isTouch)=>{const b=cv.getBoundingClientRect();const cx=isTouch?e.touches[0].clientX:e.clientX;const cy=isTouch?e.touches[0].clientY:e.clientY;m.x=(cx-b.left)/b.width*2-1;m.y=-(cy-b.top)/b.height*2+1;ray.setFromCamera(m,cam);const camDir=cam.position.clone().normalize();const hit=ray.intersectObjects(hits).find(h=>h.object.getWorldPosition(new THREE.Vector3()).normalize().dot(camDir)>.15);if(hit){clearTimeout(hideT);const i=hit.object.userData.i;if(i!==cur){cur=i;setHL(PLACES[i][0]);tip.innerHTML=card(PLACES[i]);const w=Math.min(320,innerWidth-24);tip.style.maxWidth=w+'px';requestAnimationFrame(()=>{const th=tip.offsetHeight||160;let x=cx-w-14;if(x<8)x=cx+16;x=Math.min(x,innerWidth-w-8);tip.style.left=x+'px';tip.style.top=Math.max(8,Math.min(cy-30,innerHeight-th-10))+'px';});}tip.classList.add('on');ctr.autoRotate=false;cv.style.cursor='pointer';return true;}else{clearTimeout(hideT);hideT=setTimeout(hide,250);return false;}};
 cv.addEventListener('pointermove',e=>{if(e.pointerType==='touch')return;showTip(e,false);});
 cv.addEventListener('pointerdown',e=>{if(e.pointerType!=='touch')return;e.preventDefault();const found=showTip(e,false);if(!found)hide();});
-cv.addEventListener('touchstart',e=>{const b=cv.getBoundingClientRect();const t=e.touches[0];m.x=(t.clientX-b.left)/b.width*2-1;m.y=-(t.clientY-b.top)/b.height*2+1;ray.setFromCamera(m,cam);const camDir=cam.position.clone().normalize();const hit=ray.intersectObjects(hits).find(h=>h.object.getWorldPosition(new THREE.Vector3()).normalize().dot(camDir)>.15);if(hit){e.preventDefault();clearTimeout(hideT);const i=hit.object.userData.i;cur=i;tip.innerHTML=card(PLACES[i]);const w=Math.min(300,innerWidth-24);tip.style.maxWidth=w+'px';requestAnimationFrame(()=>{const th=tip.offsetHeight||160;let x=t.clientX-w/2;x=Math.max(8,Math.min(x,innerWidth-w-8));tip.style.left=x+'px';tip.style.top=Math.max(8,Math.min(t.clientY-th-16,innerHeight-th-10))+'px';});tip.classList.add('on');ctr.autoRotate=false;}},{passive:false});
+cv.addEventListener('touchstart',e=>{const b=cv.getBoundingClientRect();const t=e.touches[0];m.x=(t.clientX-b.left)/b.width*2-1;m.y=-(t.clientY-b.top)/b.height*2+1;ray.setFromCamera(m,cam);const camDir=cam.position.clone().normalize();const hit=ray.intersectObjects(hits).find(h=>h.object.getWorldPosition(new THREE.Vector3()).normalize().dot(camDir)>.15);if(hit){e.preventDefault();clearTimeout(hideT);const i=hit.object.userData.i;cur=i;setHL(PLACES[i][0]);tip.innerHTML=card(PLACES[i]);const w=Math.min(300,innerWidth-24);tip.style.maxWidth=w+'px';requestAnimationFrame(()=>{const th=tip.offsetHeight||160;let x=t.clientX-w/2;x=Math.max(8,Math.min(x,innerWidth-w-8));tip.style.left=x+'px';tip.style.top=Math.max(8,Math.min(t.clientY-th-16,innerHeight-th-10))+'px';});tip.classList.add('on');ctr.autoRotate=false;}},{passive:false});
 cv.addEventListener('touchend',()=>{clearTimeout(hideT);hideT=setTimeout(hide,3000);});
 cv.addEventListener('pointerleave',()=>{clearTimeout(hideT);hideT=setTimeout(hide,250);});
 globe.rotation.set(0.35,-2.06,0);
