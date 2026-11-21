@@ -163,7 +163,7 @@
         }
         list.forEach(function (el) { counter(el); if (el._run) cIO.observe(el); });
       };
-      (window.requestIdleCallback || setTimeout)(cnt, 200);
+      if (window.requestIdleCallback) requestIdleCallback(cnt, { timeout: 200 }); else setTimeout(cnt, 200);
       $('i[style*="--w"],.hb .t i,.seg i').forEach(function (el) {
         if (el.closest('.br,.tr')) return;
         var sib = [].indexOf.call(el.parentElement.children, el);
@@ -318,5 +318,30 @@
       addEventListener('scroll', tt, { passive: true }); tt();
       up.addEventListener('click', function () { scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' }); });
     }
+
+    /* ---------- 13. home button above back-to-top, only on long pages (more than 3 screens), never on the home page ---------- */
+    (function () {
+      var path = location.pathname;
+      if (path === '/' || path.slice(-1) === '/' || /\/index\.html$/.test(path)) return;
+      var topB = d.getElementById('toTop'); if (!topB) return;
+      var home = d.getElementById('toHome');
+      if (!home) {
+        home = d.createElement('a'); home.id = 'toHome'; home.href = 'index.html';
+        home.setAttribute('aria-label', 'Go to portfolio home'); home.title = 'Portfolio home';
+        home.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"></path><path d="M5 9.5V21h14V9.5"></path><path d="M10 21v-6h4v6"></path></svg>';
+        d.body.appendChild(home);
+      }
+      var css = d.createElement('style');
+      css.textContent = '#toHome svg{width:22px;height:22px}#toTop:hover,#toHome:hover{background:#24242b!important;border-color:#14f195!important}@media print{#toHome{display:none!important}}';
+      d.head.appendChild(css);
+      home.style.cssText = 'position:fixed;right:clamp(18px,3vw,34px);bottom:calc(clamp(18px,3vw,34px) + 52px + 12px);z-index:60;width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:#1b1b20;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 34px -12px rgba(0,0,0,.8);opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .25s,transform .25s,visibility .25s,background .2s,border-color .2s';
+      var sync = function () {
+        var longPage = d.documentElement.scrollHeight > innerHeight * 3;
+        var on = longPage && (topB.classList.contains('show') || topB.style.opacity === '1');
+        home.style.opacity = on ? 1 : 0; home.style.visibility = on ? 'visible' : 'hidden'; home.style.transform = on ? 'none' : 'translateY(12px)';
+        home.tabIndex = on ? 0 : -1;
+      };
+      addEventListener('scroll', sync, { passive: true }); addEventListener('resize', sync); addEventListener('load', sync); sync();
+    })();
   } catch (err) { if (window.console) console.warn('motion.js', err); }
 })();
