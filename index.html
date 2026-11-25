@@ -416,20 +416,21 @@ html:not(.js) .reveal-s{opacity:1;transform:none}
 
   /* ---- hero deck: bring any screen to the front ---- */
   var panes=[].slice.call(document.querySelectorAll('.pane')),chips=[].slice.call(document.querySelectorAll('.chip')),cur=-1,timer=0;
-  function front(i){cur=i;panes.forEach(function(p,k){p.classList.toggle('front',k===i)});chips.forEach(function(c,k){c.classList.toggle('on',k===i)});stack.classList.toggle('has-front',i>=0)}
+  var lastPT='',downCur=-1,leaving=false;function go(i,href){if(leaving)return;leaving=true;clearTimeout(timer);var was=downCur===i;front(i);setTimeout(function(){location.href=href},was||reduced?120:650)}
+addEventListener('pageshow',function(){leaving=false;});function front(i){cur=i;panes.forEach(function(p,k){p.classList.toggle('front',k===i)});chips.forEach(function(c,k){c.classList.toggle('on',k===i)});stack.classList.toggle('has-front',i>=0)}
   function intent(i,delay){clearTimeout(timer);if(i===cur)return;timer=setTimeout(function(){front(i)},cur<0?0:delay)}
   panes.forEach(function(p,i){
     p.addEventListener('pointerenter',function(e){if(e.pointerType==='touch')return;intent(i,130)});
     p.addEventListener('pointerleave',function(){clearTimeout(timer)});
     p.addEventListener('focus',function(){front(i)});
-    p.addEventListener('click',function(e){if(!p.classList.contains('front')&&!fine){e.preventDefault();front(i)}});
+    p.addEventListener('pointerdown',function(e){lastPT=e.pointerType;downCur=cur});p.addEventListener('click',function(e){if(fine&&lastPT!=='touch')return;e.preventDefault();go(i,p.href)});
   });
   chips.forEach(function(c,i){
     c.addEventListener('pointerenter',function(e){if(e.pointerType!=='touch')front(i)});
     c.addEventListener('focus',function(){front(i)});
-    c.addEventListener('click',function(e){if(!fine&&!c.classList.contains('on')){e.preventDefault();front(i)}});
+    c.addEventListener('pointerdown',function(e){lastPT=e.pointerType;downCur=cur});c.addEventListener('click',function(e){if(fine&&lastPT!=='touch')return;e.preventDefault();go(i,c.href)});
   });
-  stage.addEventListener('pointerleave',function(){clearTimeout(timer);front(-1)});
+  stage.addEventListener('pointerleave',function(e){if(e.pointerType==='touch'||leaving)return;clearTimeout(timer);front(-1)});
 
   /* ---- hero: cursor tilt, parallax depth, spotlight, scroll ---- */
   var u=1;
