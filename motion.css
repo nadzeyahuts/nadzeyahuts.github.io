@@ -146,3 +146,22 @@ html,body{overflow-x:clip}
 .nw{white-space:nowrap}
 .nw>.ss:first-child{margin:0 .1em 0 0}
 .hd-bleed{width:100vw;margin-left:calc(50% - 50vw)}
+
+/* ---- mobile menu (hamburger) ---- */
+.hd-burger{display:none;width:44px;height:44px;margin-right:-10px;border:0;background:transparent;color:#fff;cursor:pointer;border-radius:12px;align-items:center;justify-content:center;justify-self:end}
+.hd-burger:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.hd-burger span{position:relative;display:block;width:20px;height:1.5px;background:currentColor;transition:background .2s}
+.hd-burger span::before,.hd-burger span::after{content:"";position:absolute;left:0;width:20px;height:1.5px;background:currentColor;transition:transform .25s ease,top .25s ease}
+.hd-burger span::before{top:-6px}.hd-burger span::after{top:6px}
+.hd.menu-open .hd-burger span{background:transparent}
+.hd.menu-open .hd-burger span::before{top:0;transform:rotate(45deg)}
+.hd.menu-open .hd-burger span::after{top:0;transform:rotate(-45deg)}
+.hd-menu{position:absolute;left:0;right:0;top:100%;z-index:20;padding:8px var(--pad,20px) 18px;background:#121115;box-shadow:0 30px 60px -10px rgba(0,0,0,.8);border-bottom:1px solid var(--line-2,rgba(255,255,255,.14));opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .25s,transform .25s,visibility .25s}
+.hd.menu-open .hd-menu{opacity:1;visibility:visible;transform:none}
+.hd-menu a{display:flex;align-items:center;justify-content:space-between;font-family:var(--head,'Epilogue',system-ui,sans-serif);font-weight:500;font-size:22px;color:#fff;padding:14px 2px;border-bottom:1px solid var(--line,rgba(255,255,255,.07))}
+.hd-menu a:last-child{border-bottom:0}
+.hd-menu a::after{content:"→";font-size:16px;color:var(--muted-2,#b7b8c0)}
+.hd-menu a[aria-current]{color:var(--muted-2,#b7b8c0)}
+@media(max-width:760px){.hd-in{grid-template-columns:1fr auto auto}.hd-burger{display:inline-flex}}
+@media(min-width:761px){.hd-menu{display:none}}
+@media(prefers-reduced-motion:reduce){.hd-menu,.hd-burger span::before,.hd-burger span::after{transition:none}}
