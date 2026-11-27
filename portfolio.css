@@ -17,10 +17,10 @@
   --muted:     #948f9a;
   --muted-2:   #b7b8c0;
   --faint:     #8d8e98;
-  --green:     #14f195;
-  --green-soft:#5fe0a0;
+  --green:     #59BC6F;
+  --green-soft:#8FD9A0;
   --sol-1:     #9945ff;
-  --sol-2:     #14f195;
+  --sol-2:     #59BC6F;
   --sol-3:     #19d3f5;
   --max:       1280px;
   --pad:       clamp(20px, 5vw, 64px);
